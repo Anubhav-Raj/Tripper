@@ -1,15 +1,16 @@
-require("./db/db");
-const express = require("express");
-const bodyParser = require("body-parser");
-
+import connectDB from './db/db.js';
+import express from 'express';
+import bodyParser from 'body-parser';
+connectDB();
 const PORT = 5005;
 
 const app = express();
+app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("landing");
+  res.render('landing');
 });
 
 app.listen(PORT, () => {
