@@ -7,10 +7,12 @@ connectDB();
 const PORT = 5005;
 
 const app = express();
-app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use("/profile", express.static("upload/images"));
 
 app.get("/", (req, res) => {
   res.render("landing");

@@ -1,6 +1,6 @@
 .breadcrumb-area {
   background: linear-gradient(rgba(0, 0, 0, 0.65) 100%, rgba(0, 0, 0, 0.65) 0),
-    url(/_next/static/media/breadcrumb-bg.10224260.png);
+    url("/img/productHeading.png");
   background-size: cover;
   min-height: 400px;
   display: flex;
