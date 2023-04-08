@@ -17,8 +17,8 @@ app.use("/profile", express.static("upload/images"));
 app.get("/", (req, res) => {
   res.render("landing");
 });
-app.get("/product", (req, res) => {
-  res.render("allproduct");
+app.get("/package", (req, res) => {
+  res.render("allpackage");
 });
 
 app.listen(PORT, () => {
