@@ -27,6 +27,12 @@ app.get("/package", (req, res) => {
   });
 });
 
+app.get("/navigation", (req, res) => {
+  res.render("includes/navigation", {
+    pageTitle: "Tripper",
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
