@@ -5,6 +5,8 @@ import passport from "passport";
 import mongoose from "mongoose";
 import GitHubStrategy from "passport-github2";
 import session from "express-session";
+import dotenv from 'dotenv';
+dotenv.config();
 import path from "path";
 
 connectDB();
@@ -25,6 +27,8 @@ app.set("view engine", "ejs");
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
@@ -36,12 +40,13 @@ const userSchema = new mongoose.Schema({
 
 const User = new mongoose.model("User", userSchema);
 
+
 passport.use(
   new GitHubStrategy(
     {
-      clientID: "c191b26ca6beaa25b802",
-      clientSecret: "1583ec0c7dce732697b8124e2fa3ccd8e3a77823",
-      callbackURL: "http://127.0.0.1:3000/auth/github/allpackage",
+      clientID: process.env.OAUTH_CLIENT_ID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      callbackURL: "http://127.0.0.1:3000/auth/github/package",
     },
     function (accessToken, refreshToken, profile, done) {
       console.log(profile.id);
@@ -91,11 +96,11 @@ app.get(
 );
 
 app.get(
-  "/auth/github/allpackage",
+  "/auth/github/package",
   passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("/");
+    res.redirect("/package");
   }
 );
 
@@ -109,31 +114,12 @@ app.post("/login", (req, res) => {
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, () => {
-        res.redirect("/allpackage");
+        res.redirect("/package");
       });
     }
   });
 });
 
-//   passport.use(User.createStrategy());
-// // passport.serializeUser(User.serializeUser());
-// // passport.deserializeUser(User.deserializeUser());
-
-// passport.serializeUser(function(user, cb) {
-//     process.nextTick(function() {
-//       return cb(null, {
-//         id: user.id,
-//         username: user.username,
-//         picture: user.picture
-//       });
-//     });
-//   });
-
-//   passport.deserializeUser(function(user, cb) {
-//     process.nextTick(function() {
-//       return cb(null, user);
-//     });
-//   });
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
