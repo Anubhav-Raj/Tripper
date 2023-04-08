@@ -1,29 +1,31 @@
 .signin {
   text-decoration: none;
-  color: white;
+  color: #353767;
   font-size: 0.8rem;
 }
 
 .login-page {
   font-family: sans-serif;
-  background: #243b55;
+  background: #d0daf3;
 }
 
 .login-box {
   position: absolute;
   top: 50%;
   left: 50%;
+  color: #353767;
   width: 350px;
   padding: 50px;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  transform: translate(39%, -50%);
+  /* background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px; */
+  border: 2px solid #353767;
 }
 
 .heading-login-box {
   margin-top: 20px;
   margin-bottom: 20px;
-  color: #fff;
+  color: #353767;
   text-align: center;
 }
 
@@ -35,10 +37,12 @@
   width: 100%;
   padding: 10px 0;
   font-size: 14px;
-  color: #fff;
+  color: #353767;
+
   margin-bottom: 30px;
   border: none;
-  border-bottom: 1px solid #fff;
+
+  border-bottom: 1px solid #353767;
   outline: none;
   background: transparent;
 }
@@ -49,16 +53,17 @@
   left: 0;
   padding: 10px 0;
   font-size: 14px;
-  color: #fff;
+  color: #353767;
+
   pointer-events: none;
   transition: 0.5s;
 }
 
-.login-box .user-box input:focus~label,
-.login-box .user-box input:valid~label {
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: #8ab0df;
+  color: #353767;
   font-size: 12px;
 }
 
@@ -66,17 +71,17 @@
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  color: #8ab0df;
+  color: #353767;
   font-size: 14px;
   text-decoration: none;
   overflow: hidden;
-  transition: .5s;
+  transition: 0.5s;
   margin-top: 30px;
 }
 
 .login-box a:hover {
   background: #8ab0df;
-  color: #fff;
+  color: #353767;
 }
 
 .login-box a span {
@@ -95,12 +100,12 @@
 
 @keyframes btn-1 {
   0% {
-      left: -100%;
+    left: -100%;
   }
 
   50%,
   100% {
-      left: 100%;
+    left: 100%;
   }
 }
 
@@ -116,12 +121,12 @@
 
 @keyframes btn-2 {
   0% {
-      top: -100%;
+    top: -100%;
   }
 
   50%,
   100% {
-      top: 100%;
+    top: 100%;
   }
 }
 
@@ -137,12 +142,12 @@
 
 @keyframes btn-3 {
   0% {
-      right: -100%;
+    right: -100%;
   }
 
   50%,
   100% {
-      right: 100%;
+    right: 100%;
   }
 }
 
@@ -158,44 +163,45 @@
 
 @keyframes btn-4 {
   0% {
-      bottom: -100%;
+    bottom: -100%;
   }
 
   50%,
   100% {
-      bottom: 100%;
+    bottom: 100%;
   }
 }
 @media screen and (max-width: 576px) and (min-width: 400px) {
   .login-box {
-      width: 250px;
+    width: 250px;
   }
 }
 
 @media screen and (max-width: 400px) {
   .login-box {
-      width: 200px;
+    width: 200px;
   }
 
   .heading-login-box {
-      font-size: 16px !important;
+    font-size: 16px !important;
   }
 
   .user-box-input {
-      font-size: 12px;
+    font-size: 12px;
   }
 
   .user-box-label {
-      font-size: 12px;
+    font-size: 12px;
   }
   .login-box-button {
-      font-size: 12px;
+    font-size: 12px;
   }
 }
 
-.signin a{
+.signin a {
   text-decoration: none;
-  color: white;
+  color: #353767;
+
   font-size: 0.8rem;
 }
 

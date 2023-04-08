@@ -1,0 +1,71 @@
+<!-- /header -->
+<%- include("./includes/head.ejs") %>
+<style>
+  .login-box {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .user {
+    border-radius: 50%;
+    width: 50%;
+  }
+  .card-body {
+    display: flex;
+  }
+  .login_btn {
+    text-align: center;
+    cursor: pointer;
+  }
+  a :hover {
+    border: none;
+    background: none;
+    border: none;
+  }
+</style>
+<body class="container" style="background-color: #eaeef7">
+  <div class="login-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center" style="color: #353767">
+        <h1><b>Login</b>As</h1>
+      </div>
+      <div class="card-body">
+        <a class="login_btn" href="/adminlogin">
+          <img src="img/user.png" class="user" alt="" srcset="" />
+          <div
+            class="admin_login text-black"
+            style="font-weight: bold; color: #353767"
+          >
+            ADMIN
+          </div>
+        </a>
+        <a class="login_btn" href="/guidelogin">
+          <img src="img/guide.png" class="user" alt="" srcset="" />
+          <div
+            class="admin_login text-black"
+            style="font-weight: bold; color: #353767"
+          >
+            GUIDE
+          </div>
+        </a>
+        <a class="login_btn" href="/touristlogin">
+          <img src="img/tourist.png" class="user" alt="" srcset="" />
+          <div
+            class="admin_login text-black"
+            style="font-weight: bold; color: #353767"
+          >
+            TOURIST
+          </div>
+        </a>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+</body>
+
+<%- include("./includes/end.ejs") %>
