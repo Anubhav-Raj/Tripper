@@ -27,8 +27,8 @@ app.get("/package", (req, res) => {
   });
 });
 
-app.get("/blog", (req, res) => {
-  res.render("blog", {
+app.get("/navigation", (req, res) => {
+  res.render("includes/navigation", {
     pageTitle: "Tripper",
   });
 });
