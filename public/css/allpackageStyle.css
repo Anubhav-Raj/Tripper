@@ -27,6 +27,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  list-style-type: none;
 }
 
 .breadcrumb-area .breadcrumb-wrap ul.breadcrumb-links li {
@@ -38,6 +39,7 @@
 
 .breadcrumb-area .breadcrumb-wrap ul.breadcrumb-links li a {
   color: #fff;
+  text-decoration: none !important;
 }
 
 .breadcrumb-area .breadcrumb-wrap ul.breadcrumb-links li i {

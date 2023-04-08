@@ -15,10 +15,15 @@ app.set("view engine", "ejs");
 
 app.use("/profile", express.static("upload/images"));
 
-
 app.get("/", (req, res) => {
-  res.render("Screen/landing",{
-    pageTitle:"Tripper"
+  res.render("Screen/landing", {
+    pageTitle: "Tripper",
+  });
+});
+
+app.get("/package", (req, res) => {
+  res.render("allpackage", {
+    pageTitle: "Tripper",
   });
 });
 
