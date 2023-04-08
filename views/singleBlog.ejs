@@ -1,6 +1,158 @@
 <%- include("./includes/head.ejs") %> <%- include("./includes/navigation.ejs")
 %>
 <link href="/css/Navigation.css" rel="stylesheet" type="text/css" />
+<style>
+   .blog__details__btns__item a {
+    font-size: 16px;
+    color: #111111;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .blog__details__btns__item {
+    margin-bottom: 20px;
+  }
+  .blog__details__btns__item a span {
+    font-size: 24px;
+    color: #444444;
+    position: relative;
+    top: 4px;
+    margin-right: 5px;
+  }
+  .blog__details__tags {
+    padding-top: 30px;
+    border-top: 1px solid #e8eff4;
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
+  .blog__details__tags span {
+    font-size: 16px;
+    color: #111111;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 25px;
+  }
+  .blog__details__tags a {
+    font-size: 14px;
+    color: #444444;
+    background: #f2f2f2;
+    display: inline-block;
+    padding: 7px 15px 5px;
+    margin-right: 10px;
+  }
+  .blog__details__comment {
+    position: relative;
+  }
+  .blog__details__comment h5 {
+    font-size: 20px;
+    color: #111111;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 45px;
+  }
+  .blog__details__comment h5:before {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 14px;
+    width: 10px;
+    background: rgba(226, 108, 12, 0.3);
+    content: "";
+  }
+  .blog__details__comment .primary-btn {
+    background: rgb(12 7 32 / 20%);
+    color: #111111;
+    position: absolute;
+    right: 0;
+    top: -12px;
+  }
+  .primary-btn {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    color: #ffffff;
+    background: #3c4283;
+    letter-spacing: 2px;
+  }
+
+  .blog__details__comment__item {
+    overflow: hidden;
+    margin-bottom: 45px;
+  }
+  .blog__details__comment__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .blog__details__comment__item--reply {
+    padding-left: 50px;
+  }
+
+  .blog__details__comment__item__pic {
+    float: left;
+    margin-right: 30px;
+  }
+  .blog__details__comment__item__pic img {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+  }
+
+  .blog__details__comment__item__text {
+    position: relative;
+    overflow: hidden;
+  }
+  .blog__details__comment__item__text h6 {
+    font-size: 16px;
+    color: #111111;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .blog__details__comment__item__text span {
+    font-size: 14px;
+    color: #888888;
+    display: block;
+    margin-bottom: 14px;
+  }
+  .blog__details__comment__item__text p {
+    color: #444444;
+    margin-bottom: 0;
+  }
+  .blog__details__comment__item__text .blog__details__comment__btns {
+    position: absolute;
+    right: 0;
+    top: 20px;
+  }
+  .blog__details__comment__item__text .blog__details__comment__btns a {
+    font-size: 14px;
+    color: #111111;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 24px;
+    position: relative;
+  }
+  .blog__details__comment__item__text .blog__details__comment__btns a:after {
+    position: absolute;
+    right: -16px;
+    top: -2px;
+    content: "|";
+    color: #888888;
+    font-weight: 500;
+  }
+  .blog__details__comment__item__text
+    .blog__details__comment__btns
+    a:last-child {
+    margin-right: 0;
+  }
+  .blog__details__comment__item__text
+    .blog__details__comment__btns
+    a:last-child:after {
+    display: none;
+  }
+</style>
 <div class="breadcrumb-area pt-5">
   <div class="container">
     <div class="row">
@@ -26,6 +178,474 @@
             </li>
             <li>Blog Details</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="blog-details-wrapper pt-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="blog-details">
+          <div class="blog-title-xl">
+            <h3>
+              Donec egestas orci viverraDonec egestas orci viverr fermentum
+              risus.
+            </h3>
+            <div class="blog-info-xl">
+              <a class="blog-writer" href="/blog-details#"
+                ><i class="fa fa-user" aria-hidden="true"></i></i>&nbsp;Dina Jems</a
+              ><a class="blog-comment" href="/blog-details#"
+                ><i class="fa fa-commenting" aria-hidden="true"></i><span>(3)</span>Comment</a
+              >
+            </div>
+          </div>
+          <div class="blog-img-xl">
+            <img
+              src="https://tourx-next.vercel.app/assets/images/blog/bd.png"
+              alt=""
+              class="img-fluid"
+            />
+            <div class="blog-date">
+              <i class="fa fa-calendar" aria-hidden="true"></i>1 April, 2021
+            </div>
+          </div>
+          <div class="blog-texts mt-30">
+            <p>
+              Suspendisse dolor risus, congue ac diam id, viverra facilisis
+              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
+              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
+              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
+              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
+              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
+              nec risus nec felis accumsan rutrum sagittis vitae lectus.
+            </p>
+            <p class="mt-20">
+              Suspendisse dolor risus, congue ac diam id, viverra facilisis
+              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
+              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
+              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
+              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
+              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
+              nec risus nec felis accumsan rutrum sagittis vitae lectus. Donec
+              mauris metus, iaculis non interdum et, scelerisque luctus mauris.
+              Morbi ac lectus euismod, vehicula est sit amet, malesuada quam.
+              Vivamus sed eros eu nibh scelerisque porta. Ut nec sem eget est
+              rutrum facilisis. Donec purus tortor, scelerisque ut massa vitae,
+              varius accumsan mauris. Nullam ut metus at lacus porta aliquet.
+              Curabitur eu facilisis dolor, sed sagittis enim. Suspendisse
+              venenatis urna nec tortor porttitor interdum. Mauris convallis
+              tempus dictum. Morbi convallis sapien at sem pellentesque maximus.
+            </p>
+            <div class="blog-qoute">
+              <i class="bx bxs-quote-right qoute-icon"></i
+              ><strong
+                >Suspendisse dolor risus, congue ac diam id, the viverra
+                facilisis dolor. Cras nec purus sagittis, an varius tortor at,
+                maximus erat. Sed at tellus id foe tellus lobortis dictum.
+                Mauris dignissim, turpis
+              </strong>
+            </div>
+            <p>
+              Suspendisse dolor risus, congue ac diam id, viverra facilisis
+              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
+              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
+              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
+              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
+              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
+              nec risus nec felis accumsan rutrum sagittis vitae lectus.
+            </p>
+            <div class="blog-gallary">
+              <img
+                src="https://tourx-next.vercel.app/assets/images/blog/bd.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <h3 class="sub-title">Things You Can Do to a vibe</h3>
+            <p class="mt-20">
+              Suspendisse dolor risus, congue ac diam id, viverra facilisis
+              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
+              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
+              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
+              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
+              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
+              nec risus nec felis accumsan rutrum sagittis vitae lectus.
+            </p>
+            <p class="mt-20">
+              Suspendisse dolor risus, congue ac diam id, viverra facilisis
+              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
+              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
+              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
+              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
+              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
+              nec risus nec felis accumsan rutrum sagittis vitae lectus.
+            </p>
+          </div>
+          <div class="blog-bottom">
+            <div class="blog-tags">
+              <h5>tags:</h5>
+              <ul>
+                <li><a href="/blog-details#">Trip</a></li>
+                <li><a href="/blog-details#">Travel Forest</a></li>
+                <li><a href="/blog-details#">Tourist</a></li>
+              </ul>
+            </div>
+            <div class="blog-social">
+              <ul>
+                <li>
+                  <a href="#"><i class="bx bxl-instagram"></i></a
+                  ><a href="#"><i class="bx bxl-facebook"></i></a
+                  ><a href="#"><i class="bx bxl-twitter"></i></a
+                  ><a href="#"><i class="bx bxl-whatsapp"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+           
+
+          <div class="blog__details__comment mb-5">
+            <%if(blog.comments.length > 0){%>
+            <h5><%=blog.comments.length %> comments</h5>
+            <%}else{%>
+            <h5>0 comments</h5>
+            <%}%>
+            <div class="d-flex flex-row mt-4 mb-4">
+              <% if(isGuideAuth){%>
+               
+              <img
+                class="img-fluid img-responsive rounded-circle mr-2"
+                src="/profile/<%=guide.guideImage%>"
+                width="38"
+              />
+              <form action="/blog/comment" class="col-lg-11" style="display: flex;"method="post">
+               <input type="hidden" name="blogId" value="<%=blog._id%>">
+               <input type="hidden" name="authType" value="guide">
+              <input
+                type="text"
+                class="form-control mr-3"
+                placeholder="Add comment"
+                name="comment"
+              />
+              <button
+                class="btn btn-primary"
+                style="background-color: #888888; outline: none; border: none"
+                type="submit"
+              >
+                Comment
+              </button>
+            </form>
+              <%}else if(isTouristAuth){%>
+                <img
+                class="img-fluid img-responsive rounded-circle mr-2"
+                src="/profile/<%=tourist.touristImage%>"
+                width="38"
+              />
+              <form action="/blog/comment" class="col-lg-11" style="display: flex;" method="post">
+               <input type="hidden" name="blogId" value="<%=blog._id%>">
+               <input type="hidden" name="authType" value="tourist">
+              <input
+                type="text"
+                class="form-control mr-3"
+                placeholder="Add comment"
+                name="comment"
+              />
+              <button
+                class="btn btn-primary"
+                style="background-color: #888888; outline: none; border: none"
+                type="submit"
+              >
+                Comment
+              </button>
+            </form>
+              <%}else{%>
+                <img
+                class="img-fluid img-responsive rounded-circle mr-2"
+                src="https://source.unsplash.com/600x400/?people"
+                width="38"
+              />
+    
+              <input
+                type="text"
+                class="form-control mr-3"
+                placeholder="Add comment"
+              />
+              <a
+                class="btn btn-primary"
+                style="background-color: #888888; outline: none; border: none"
+                href="/tourist/login"
+              >
+                Comment
+              </a>
+              <%}%>
+            </div>
+          </div>
+    
+          <%if(blog.comments.length > 0){%>
+          <%for(var i=0; i<blog.comments.length; i++){%>
+          <div class="blog__details__comment__item">
+            <div class="blog__details__comment__item__pic">
+             
+              <% if(blog.comments[i].commentAuthorType === "guide"){%>
+                <%if (blog.comments[i].commentAuthorGuide.guideImage){%>
+              <img src="/profile/<%=blog.comments[i].commentAuthorGuide.guideImage%>" alt="" />
+              <%}else{%>
+                <img src="https://source.unsplash.com/600x400/?people" alt="" />
+              <%}%>
+            </div>
+            <div class="blog__details__comment__item__text">
+              <h6><%=blog.comments[i].commentAuthorGuide.guideName%></h6>
+              <% }else {%>
+                <%if (blog.comments[i].commentAuthorTourist.touristImage){%>
+                
+                  <img src="/profile/<%=blog.comments[i].commentAuthorTourist.touristImage%>" alt="" />
+                <%}else{%>
+                  <img src="https://source.unsplash.com/600x400/?people" alt="" />
+                <%}%>
+            </div>
+            <div class="blog__details__comment__item__text">
+              <h6><%=blog.comments[i].commentAuthorTourist.touristName %> </h6>
+              <%}%>
+              <% var date = new Date(blog.comments[i].createdAt);%>
+              <span><%=date.toDateString()%></span>
+              
+              <p>
+                <%=blog.comments[i].commentContent%>
+              </p>
+              <div class="blog__details__comment__btns">            
+                <button   class="<%=blog.comments[i]._id%>"  style="background: none; border:  none;  font-weight: bold;" onclick="myFunction()">Reply</button>
+               
+            </div>
+            <div class="d-flex flex-row mt-4 mb-4" id="<%=blog.comments[i]._id%>" style="display: none !important;">
+              <% if(isGuideAuth) {%>
+              <%if (guide.guideImage){%>
+              <img  class="img-fluid img-responsive rounded-circle mr-2" src="/profile/<%=guide.guideImage%>"  width="38" alt="guide" />
+              <%}else{%>       
+              <img
+                class="img-fluid img-responsive rounded-circle mr-2"
+                src="https://source.unsplash.com/600x400/?people"
+                alt="guide"
+                width="38"
+              />
+              <%}%>
+              <form action="/blog/reply" class="col-lg-11"  style="display: flex;"  method="post" >
+              <input
+                type="text"
+                class="form-control mr-3"
+                placeholder="Add comment"
+                name="reply"
+              />
+              <input type="hidden" name="blogId" value="<%=blog._id%>" />
+              <input type="hidden" name="commentId" value="<%=blog.comments[i]._id%>" />
+              <input type="hidden" name="replyAuthorType" value="guide" />
+              <input type="hidden" name="replyAuthorId" value="<%=guide._id%>" />
+              
+              <button
+                class="btn btn-primary"
+                style="background-color: #888888; outline: none; border: none"
+                type="submit"
+              >
+                Comment
+              </button>
+            </form>
+              <% }else if(isTouristAuth) {%>
+                <%if (tourist.touristImage){%>
+              <img  class="img-fluid img-responsive rounded-circle mr-2" src="/profile/<%=tourist.touristImage%>"  width="38" alt="tourist" />
+              <%}else{%>       
+              <img
+                class="img-fluid img-responsive rounded-circle mr-2"
+                src="https://source.unsplash.com/600x400/?people"
+                alt="tourist"
+                width="38"
+              />
+              <%}%>
+              <form action="/blog/reply" class="col-lg-11" style="display: flex;"   method="post" >
+              <input
+                type="text"
+                class="form-control mr-3"
+                placeholder="Add comment"
+                alt="tourist"
+                name="reply"
+              />
+              <input type="hidden" name="blogId" value="<%=blog._id%>" />
+              <input type="hidden" name="commentId" value="<%=blog.comments[i]._id%>" />
+              <input type="hidden" name="replyAuthorType" value="tourist" />
+              <input type="hidden" name="replyAuthorId" value="<%=tourist._id%>" />
+              
+              <button
+                class="btn btn-primary"
+                style="background-color: #888888; outline: none; border: none"
+                type="submit"
+              >
+                Comment
+              </button>
+            </form>
+              <%}else {%>
+                <img
+                class="img-fluid img-responsive rounded-circle mr-2"
+                src="https://source.unsplash.com/600x400/?people"
+                width="38"
+              />
+              
+              <input
+                type="text"
+                class="form-control mr-3"
+                placeholder="Add comment"
+                name="reply"
+              />
+              
+              <a
+                class="btn btn-primary"
+                style="background-color: #888888; outline: none; border: none"
+                href="/tourist/login"
+              >
+                Comment
+              </a>
+              <%}%>
+            </div>
+            </div>
+          </div>
+          <%if(blog.comments[i].replies.length > 0){%>
+          <%for(var j=0; j<blog.comments[i].replies.length; j++){%>
+          <div
+            class="blog__details__comment__item blog__details__comment__item--reply"
+          >
+            <div class="blog__details__comment__item__pic">
+              <% if(blog.comments[i].replies[j].replyAuthorType === "guide"){%>
+              <%if (blog.comments[i].replies[j].replyAuthorGuide.guideImage){%>
+              <img src="/profile/<%=blog.comments[i].replies[j].replyAuthorGuide.guideImage%>" alt="" />
+              <%}else {%>
+                <img src="https://source.unsplash.com/600x400/?people" alt="" />
+              <%}%>
+              
+            </div>
+            <div class="blog__details__comment__item__text"> 
+              <h6><%=blog.comments[i].replies[j].replyAuthorGuide.guideName%></h6>
+              <%}else {%>
+              <%if (blog.comments[i].replies[j].replyAuthorTourist.touristImage){%>
+              <img src="/profile/<%=blog.comments[i].replies[j].replyAuthorTourist.touristImage%>" alt="" />
+              <%}else {%>
+                <img src="https://source.unsplash.com/600x400/?people" alt="" />
+              <%}%>
+    
+            </div>
+            <div class="blog__details__comment__item__text"> 
+              <h6><%=blog.comments[i].replies[j].replyAuthorTourist.touristName%></h6>
+              <%}%>
+              <% var datep = new Date(blog.comments[i].replies[j].createdAt);%>
+              <span><%=datep.toDateString()%></span>
+              
+              <p>
+                <%=blog.comments[i].replies[j].replyContent%>
+              </p>
+           
+            </div>
+          </div>
+          <%}%>
+          <%}%>
+          <%}%>
+          <%}%>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="blog-sidebar">
+          <div class="sidebar-searchbox">
+            <div class="input-group search-box">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search Tour..."
+                aria-label="Recipient's username"
+              /><button class="btn btn-outline-secondary" type="button">
+                <i class="bx bx-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-6">
+              <div class="col-lg-12 col-md-12">
+                <div class="blog-categorie mt-40">
+                  <h5 class="categorie-head">Categories</h5>
+                  <ul>
+                    <li>
+                      <a href="#"
+                        ><i class="bx bxs-chevrons-right"></i> Adventure Tour</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="bx bxs-chevrons-right"></i> City Tour</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="bx bxs-chevrons-right"></i> Group Tour</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="bx bxs-chevrons-right"></i> Couple Tour</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="bx bxs-chevrons-right"></i> Village Tour</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-6">
+              <div class="blog-popular mt-40">
+                <h5 class="categorie-head">Popular Post</h5>
+                <ul>
+                  <% for( var i=0 ;i<3; i++){  %>
+                  <li class="blog-card-sm">
+                    <div class="blog-img-sm">
+                      <img src="assets/images/blog/b-sm1.png" alt="" />
+                    </div>
+                    <div class="blog-details-sm">
+                      <a class="blog-title-sm" href="/blog-details"
+                        >Lake Garda</a
+                      >
+                      <div class="blog-info">
+                        <a class="blog-writer" href="#"
+                          ><i class="fa fa-user" aria-hidden="true"></i></i>&nbsp;Dina Jems</a
+                        ><a href="#" class="blog-date">
+                          <i class="fa fa-calendar" aria-hidden="true"></i> 10 April, 2021</a
+                        >
+                      </div>
+                    </div>
+                  </li>
+                   <% } %>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-6">
+              <div class="blog-tag mt-40">
+                <h5 class="categorie-head">Tag Tour</h5>
+                <ul>
+                  <li><a href="#">Adventure</a></li>
+                  <li><a href="#">Trip</a></li>
+                  <li><a href="#">Guided</a></li>
+                  <li><a href="#">Historical</a></li>
+                  <li><a href="#">Road Trips</a></li>
+                  <li><a href="#">Tourist</a></li>
+                  <li><a href="#">Tourist</a></li>
+                  <li><a href="#">Selivia</a></li>
+                  <li><a href="#">Tour Guide</a></li>
+                  <li><a href="#">Cultural</a></li>
+                  <li><a href="#">Natural</a></li>
+                  <li><a href="#">Journey</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
