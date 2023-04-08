@@ -19953,7 +19953,7 @@ a {
 }
 
 .breadcrumb-area {
-    background: linear-gradient(rgba(0,0,0,.65) 100%,rgba(0,0,0,.65) 0),url("img/productHeading.png");
+    background: linear-gradient(rgba(0,0,0,.65) 100%,rgba(0,0,0,.65) 0),url("/img/productHeading.png");
     background-size: cover;
     min-height: 400px;
     display: flex;

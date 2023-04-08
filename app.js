@@ -1,9 +1,6 @@
 import connectDB from "./db/db.js";
 import express from "express";
 import bodyParser from "body-parser";
-import passport from "passport";
-import mongoose from "mongoose";
-import GitHubStrategy from "passport-github2";
 import session from "express-session";
 import dotenv from 'dotenv';
 dotenv.config();
@@ -24,35 +21,7 @@ app.use(
 );
 app.use(express.static("public"));
 app.set("view engine", "ejs");
-app.use(passport.initialize());
-app.use(passport.session());
 
-
-
-const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
-  googleId: String,
-  facebookId: String,
-  githubId: String,
-  secret: String,
-});
-
-const User = new mongoose.model("User", userSchema);
-
-
-passport.use(
-  new GitHubStrategy(
-    {
-      clientID: process.env.OAUTH_CLIENT_ID,
-      clientSecret: process.env.OAUTH_CLIENT_SECRET,
-      callbackURL: "http://127.0.0.1:3000/auth/github/package",
-    },
-    function (accessToken, refreshToken, profile, done) {
-      console.log(profile.id);
-    }
-  )
-);
 app.use("/profile", express.static("upload/images"));
 
 app.get("/", (req, res) => {
@@ -66,14 +35,19 @@ app.get("/package_details", (req, res) => {
     pageTitle: "Tripper",
   });
 });
-app.get("/allblog", (req, res) => {
-  res.render("blog", {
+app.get("/package", (req, res) => {
+  res.render("allpackage", {
+    pageTitle: "Tripper",
+  });
+});
+app.get("/blogdetails", (req, res) => {
+  res.render("singleBlog", {
     pageTitle: "Tripper",
   });
 });
 
-app.get("/package", (req, res) => {
-  res.render("allpackage", {
+app.get("/allblog", (req, res) => {
+  res.render("blog", {
     pageTitle: "Tripper",
   });
 });
@@ -84,26 +58,21 @@ app.get("/navigation", (req, res) => {
   });
 });
 
-app.get("/login", (req, res) => {
-  res.render("login/login");
+app.get("/adminlogin", (req, res) => {
+  res.render("admin/adminlogin");
 });
+
+app.get("/guidelogin", (req, res) => {
+  res.render("Guide/guidelogin");
+});
+
+app.get("/touristlogin", (req, res) => {
+  res.render("Tourist/touristlogin");
+});
+
 app.get("/signup", (req, res) => {
   res.render("signup/signup");
 });
-app.get(
-  "/auth/github",
-  passport.authenticate("github", { scope: ["user:email"] })
-);
-
-app.get(
-  "/auth/github/package",
-  passport.authenticate("github", { failureRedirect: "/login" }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("/package");
-  }
-);
-
 app.post("/login", (req, res) => {
   const user = new User({
     username: req.body.username,
@@ -119,7 +88,6 @@ app.post("/login", (req, res) => {
     }
   });
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
