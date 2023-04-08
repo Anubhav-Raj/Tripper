@@ -56,9 +56,18 @@ app.get("/navigation", (req, res) => {
   });
 });
 
-app.get("/login", (req, res) => {
-  res.render("login/login");
+app.get("/adminlogin", (req, res) => {
+  res.render("admin/adminlogin");
 });
+
+app.get("/guidelogin", (req, res) => {
+  res.render("Guide/guidelogin");
+});
+
+app.get("/touristlogin", (req, res) => {
+  res.render("Tourist/touristlogin");
+});
+
 app.get("/signup", (req, res) => {
   res.render("signup/signup");
 });
