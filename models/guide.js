@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const guideSchema = new Schema(
@@ -54,4 +54,3 @@ const guideSchema = new Schema(
 );
 
 module.exports = mongoose.model("Guide", guideSchema);
-export default Guide;

@@ -1,19 +1,16 @@
-import mongoose from "mongoose";
-import dotenv from 'dotenv';
-dotenv.config();
+const mongoose = require("mongoose");
+const dbUrl = "mongodb://0.0.0.0:27017/tripper";
+mongoose.set("strictQuery", true);
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+mongoose
+  .connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
-  }
-};
-
-export default connectDB;
+mongoose.connection.on("connected", () => {
+  console.log("Mongoose connected");
+});
