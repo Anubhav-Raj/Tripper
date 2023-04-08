@@ -12,13 +12,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+
 app.use("/profile", express.static("upload/images"));
 
+
 app.get("/", (req, res) => {
-  res.render("landing");
-});
-app.get("/package", (req, res) => {
-  res.render("allpackage");
+  res.render("Screen/landing",{
+    pageTitle:"Tripper"
+  });
 });
 
 app.listen(PORT, () => {
