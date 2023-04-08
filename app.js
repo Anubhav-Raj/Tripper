@@ -1,12 +1,12 @@
 require("./db/db");
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session')
+const express = require("express");
+const bodyParser = require("body-parser");
+const session = require("express-session");
 
-const connectMongoDBSession = require('connect-mongodb-session')(session);
+const connectMongoDBSession = require("connect-mongodb-session")(session);
 
 const MongoDBStore = connectMongoDBSession(session);
-require('dotenv').config();
+require("dotenv").config();
 const Guide = require("./models/guide.js");
 const Tourist = require("./models/tourist.js");
 
@@ -135,6 +135,12 @@ app.get("/navigation", (req, res) => {
 
 app.get("/adminlogin", (req, res) => {
   res.render("admin/adminlogin");
+});
+
+app.get("/alllogin", (req, res) => {
+  res.render("alllogin", {
+    pageTitle: "Tripper",
+  });
 });
 
 app.get("/guidelogin", (req, res) => {
