@@ -27,6 +27,12 @@ app.get("/package", (req, res) => {
   });
 });
 
+app.get("/blog", (req, res) => {
+  res.render("blog", {
+    pageTitle: "Tripper",
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

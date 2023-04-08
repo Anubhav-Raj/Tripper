@@ -1,53 +1,162 @@
-   <nav class="navbar">
-
-  
-         <div class="logo">MUO</div>
-    
-    
-         <ul class="nav-links">
-    
-    
-           <input type="checkbox" id="checkbox_toggle" />
-    
-           <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-    
-           <!-- NAVIGATION MENUS -->
-    
-           <div class= &rdquo;menu&rdquo;>
-    
-             <li><a href="/">Home</a></li>
-    
-             <li><a href="/">About</a></li>
-    
-             <li class="services">
-    
-               <a href="/">Services</a>
-    
-               <!-- DROPDOWN MENU -->
-    
-               <ul class="dropdown">
-    
-                 <li><a href="/">Dropdown 1 </a></li>
-    
-                 <li><a href="/">Dropdown 2</a></li>
-    
-                 <li><a href="/">Dropdown 2</a></li>
-    
-                 <li><a href="/">Dropdown 3</a></li>
-    
-                 <li><a href="/">Dropdown 4</a></li>
-    
-               </ul>
-    
-             </li>
-    
-             <li><a href="/">Pricing</a></li>
-    
-             <li><a href="/">Contact</a></li>
-    
-           </div>
-    
-         </ul>
-    
-       </nav>
-  
+<link href="/css/navigation.css" rel="stylesheet" type="text/css" />
+<div class="header-area-2 header-area sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <div class="navbar-wrap">
+          <div class="logo d-flex justify-content-between">
+            <a class="navbar-brand" href="/"
+              ><img src="assets/images/logo.png" alt="logo"
+            /></a>
+          </div>
+          <div class="navbar-icons">
+            <div class="searchbar-open"><i class="flaticon-magnifier"></i></div>
+            <div class="user-dropdown-icon">
+              <i class="flaticon-user"></i>
+              <div class="account-dropdown">
+                <ul>
+                  <li class="account-el">
+                    <i class="bx bx-user-pin"></i><a href="/index2#">Sign in</a>
+                  </li>
+                  <li class="account-el">
+                    <i class="bx bxs-user-account"></i
+                    ><a href="/index2#">My Account</a>
+                  </li>
+                  <li class="account-el">
+                    <i class="bx bx-extension"></i
+                    ><a href="/index2#">Settings</a>
+                  </li>
+                  <li class="account-el">
+                    <i class="bx bx-log-in-circle"></i
+                    ><a href="/index2#">Log out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="mobile-menu d-flex">
+              <div class="top-search-bar m-0 d-block d-xl-none"></div>
+              <a href="#" class="hamburger d-block d-xl-none"
+                ><span class="h-top"></span><span class="h-middle"></span
+                ><span class="h-bottom"></span
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <nav class="main-nav">
+          <div class="navber-logo-sm">
+            <img src="assets/images/logo-2.png" alt="" class="img-fluid" />
+          </div>
+          <ul>
+            <li class="has-child-menu">
+              <a href="/index2#">Home</a><i class="fl flaticon-plus">+</i>
+              <ul class="sub-menu d-block">
+                <li><a class="sub-item" href="/">Home Page 1</a></li>
+                <li>
+                  <a class="sub-item active" href="/index2">Home Page 2</a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="/about">About us</a></li>
+            <li><a href="/destination">Destinations</a></li>
+            <li class="has-child-menu">
+              <a href="/index2#">Tour Package</a
+              ><i class="fl flaticon-plus">+</i>
+              <ul class="sub-menu d-xl-block d-none">
+                <li><a class="sub-item" href="/package">package</a></li>
+                <li>
+                  <a class="sub-item" href="/package-sidebar"
+                    >package sidebar</a
+                  >
+                </li>
+                <li>
+                  <a class="sub-item" href="/package-standard"
+                    >package standard</a
+                  >
+                </li>
+                <li>
+                  <a class="sub-item" href="/package-details"
+                    >package details</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="has-child-menu">
+              <a href="/index2#">Blogs</a><i class="fl flaticon-plus">+</i>
+              <ul class="sub-menu d-xl-block d-none">
+                <li><a class="sub-item" href="/blog">Blog page</a></li>
+                <li>
+                  <a class="sub-item" href="/blog-sidebar">Blog sidebar</a>
+                </li>
+                <li>
+                  <a class="sub-item" href="/blog-standard">Blog standard</a>
+                </li>
+                <li>
+                  <a class="sub-item" href="/blog-details">blog-details </a>
+                </li>
+              </ul>
+            </li>
+            <li class="has-child-menu">
+              <a href="/index2#">Pages</a><i class="fl flaticon-plus">+</i>
+              <ul class="sub-menu d-xl-block d-none">
+                <li><a class="sub-item" href="/gallary">gallary page</a></li>
+                <li><a class="sub-item" href="/guide">guide page</a></li>
+                <li>
+                  <a class="sub-item" href="/destination">destination page</a>
+                </li>
+                <li><a class="sub-item" href="/404">error page </a></li>
+                <li><a class="sub-item" href="/faq">FAQ page </a></li>
+              </ul>
+            </li>
+            <li><a href="/contact">Contact Us </a></li>
+          </ul>
+          <div class="navbar-icons-2">
+            <div class="searchbar-open"><i class="flaticon-magnifier"></i></div>
+            <div class="user-dropdown-icon">
+              <i class="flaticon-user"></i>
+              <div class="account-dropdown">
+                <ul>
+                  <li class="account-el">
+                    <i class="bx bx-user-pin"></i><a href="/index2#">Sign in</a>
+                  </li>
+                  <li class="account-el">
+                    <i class="bx bxs-user-account"></i
+                    ><a href="/index2#">My Account</a>
+                  </li>
+                  <li class="account-el">
+                    <i class="bx bx-extension"></i
+                    ><a href="/index2#">Settings</a>
+                  </li>
+                  <li class="account-el">
+                    <i class="bx bx-log-in-circle"></i
+                    ><a href="/index2#">Log out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-contact">
+            <ul>
+              <li class="sidebar-single-contact">
+                <i class="bx bxs-phone"></i>
+                <a href="tel:+17632275032">+1 763-227-5032</a>
+              </li>
+              <li class="sidebar-single-contact">
+                <i class="bx bxs-envelope"></i
+                ><a href="mailto:info@example.com">info@example.com</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <form>
+    <div class="main-searchbar">
+      <div class="searchbar-close"><i class="bx bx-x"></i></div>
+      <input type="text" placeholder="Search Here......" />
+      <div class="searchbar-icon"><i class="bx bx-search"></i></div>
+    </div>
+  </form>
+</div>
