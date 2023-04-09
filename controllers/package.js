@@ -1,6 +1,7 @@
 const Package = require("../models/package");
 const Booked = require("../models/booked");
 const Tourist = require("../models/tourist");
+const client = require('../utils/msg');
 
 exports.getAllPackages = (req, res, next) => {
   let logintype = "none";
@@ -87,6 +88,14 @@ exports.postBooking = (req, res, next) => {
   const bookingDate = req.body.booking_date;
   const p_name1 = req.body.p_name;
   const p_age1 = req.body.p_age;
+  client.messages
+    .create({
+        body: 'You have successfully booked your package.',
+        from: process.env.TWILIO_PHONE,
+        to: '+919506846608'
+    })
+    .then(message => console.log(message.sid));
+
   const p1 = {
     name: p_name1,
     age: p_age1,
