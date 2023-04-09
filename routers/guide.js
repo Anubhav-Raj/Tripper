@@ -23,14 +23,14 @@ router.post(
 router.get("/guide-packagelist", isGLoggedin, guideController.getPackageList);
 router.post("/guide-delete", isGLoggedin, guideController.deletePackage);
 
-// router.get("/profile", isLoggedin, guideController.getProfile);
-// router.get("/edit-profile", isLoggedin, guideController.getEditProfile);
-// router.post(
-//   "/edit-profile",
-//   upload.single("gimage"),
-//   isLoggedin,
-//   guideController.postEditProfile
-// );
+router.get("/guide-profile", isGLoggedin, guideController.getProfile);
+router.get("/guide-edit-profile", isGLoggedin, guideController.getEditProfile);
+router.post(
+  "/guide-edit-profile",
+  upload.single("gimage"),
+  isGLoggedin,
+  guideController.postEditProfile
+);
 
 router.get("/guide-login", isTAuth, guideController.getLogin);
 router.post("/guide-login", isTAuth, guideController.postLogin);

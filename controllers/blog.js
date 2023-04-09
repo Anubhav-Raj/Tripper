@@ -15,7 +15,7 @@ exports.postBlog = (req, res, next) => {
 
   // return console.log(req.guide);
   const b1 = new Blog({
-    blogTitle: btitle,
+    title: btitle,
     blogTag: btags,
     content: bdesc,
     blogImage: req.file.filename,
@@ -101,6 +101,7 @@ exports.getMainBlogList = async (req, res, next) => {
         logintype: logintype,
         user: user,
         trendingBlogs: trendingBlogs,
+        pageTitle: "Blogs",
       });
     });
 };
@@ -432,10 +433,20 @@ exports.postComment = (req, res, next) => {
       commentBlog: blogId,
     });
 
-    c.save((err, result) => {
-      if (err) {
-        return res.redirect("/blogs/" + blogId);
-      }
+    // c.save((err, result) => {
+    //   if (err) {
+    //     return res.redirect("/blogs/" + blogId);
+    //   }
+    //   Blog.findById(blogId)
+    //     .then((blog) => {
+    //       blog.comments.push(result._id);
+    //       blog.save();
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // });
+    c.save().then((result) => {
       Blog.findById(blogId)
         .then((blog) => {
           blog.comments.push(result._id);

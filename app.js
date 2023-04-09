@@ -115,12 +115,6 @@ app.get("/blogdetails", (req, res) => {
   });
 });
 
-app.get("/allblog", (req, res) => {
-  res.render("blog", {
-    pageTitle: "Tripper",
-  });
-});
-
 app.get("/navigation", (req, res) => {
   res.render("includes/navigation", {
     pageTitle: "Tripper",

@@ -173,98 +173,43 @@
         <div class="blog-details">
           <div class="blog-title-xl">
             <h3>
-              Donec egestas orci viverraDonec egestas orci viverr fermentum
-              risus.
+             <%=blog.title %>
             </h3>
             <div class="blog-info-xl">
-              <a class="blog-writer" href="/blog-details#"
-                ><i class="fa fa-user" aria-hidden="true"></i></i>&nbsp;Dina Jems</a
-              ><a class="blog-comment" href="/blog-details#"
+              <a class="blog-writer" href="/blog/<%=blog._id %>"
+                ><i class="fa fa-user" aria-hidden="true"></i></i>&nbsp;<%=blog.author.name %></a
+              ><a class="blog-comment" href="/blog/<%=blog._id %>"
                 ><i class="fa fa-commenting" aria-hidden="true"></i><span>(3)</span>Comment</a
               >
             </div>
           </div>
           <div class="blog-img-xl">
             <img
-              src="https://tourx-next.vercel.app/assets/images/blog/bd.png"
+              src="/profile/<%=blog.blogImage %>"
               alt=""
               class="img-fluid"
             />
             <div class="blog-date">
-              <i class="fa fa-calendar" aria-hidden="true"></i>1 April, 2021
+              <% var  eventDate = new Date(blog.createdAt); %>
+              <%let dates = JSON.stringify(eventDate) %>
+             <% dates = dates.slice(1,11) %>
+              <i class="fa fa-calendar" aria-hidden="true"></i><%=dates %>
             </div>
           </div>
           <div class="blog-texts mt-30">
             <p>
-              Suspendisse dolor risus, congue ac diam id, viverra facilisis
-              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
-              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
-              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
-              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
-              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
-              nec risus nec felis accumsan rutrum sagittis vitae lectus.
+                <%=blog.content %>
             </p>
-            <p class="mt-20">
-              Suspendisse dolor risus, congue ac diam id, viverra facilisis
-              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
-              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
-              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
-              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
-              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
-              nec risus nec felis accumsan rutrum sagittis vitae lectus. Donec
-              mauris metus, iaculis non interdum et, scelerisque luctus mauris.
-              Morbi ac lectus euismod, vehicula est sit amet, malesuada quam.
-              Vivamus sed eros eu nibh scelerisque porta. Ut nec sem eget est
-              rutrum facilisis. Donec purus tortor, scelerisque ut massa vitae,
-              varius accumsan mauris. Nullam ut metus at lacus porta aliquet.
-              Curabitur eu facilisis dolor, sed sagittis enim. Suspendisse
-              venenatis urna nec tortor porttitor interdum. Mauris convallis
-              tempus dictum. Morbi convallis sapien at sem pellentesque maximus.
-            </p>
+           
             <div class="blog-qoute">
               <i class="bx bxs-quote-right qoute-icon"></i
               ><strong
-                >Suspendisse dolor risus, congue ac diam id, the viverra
-                facilisis dolor. Cras nec purus sagittis, an varius tortor at,
-                maximus erat. Sed at tellus id foe tellus lobortis dictum.
-                Mauris dignissim, turpis
+                > Best Travel Agency in the world. I have been using their
               </strong>
             </div>
-            <p>
-              Suspendisse dolor risus, congue ac diam id, viverra facilisis
-              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
-              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
-              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
-              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
-              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
-              nec risus nec felis accumsan rutrum sagittis vitae lectus.
-            </p>
-            <div class="blog-gallary">
-              <img
-                src="https://tourx-next.vercel.app/assets/images/blog/bd.png"
-                alt=""
-                class="img-fluid"
-              />
-            </div>
-            <h3 class="sub-title">Things You Can Do to a vibe</h3>
-            <p class="mt-20">
-              Suspendisse dolor risus, congue ac diam id, viverra facilisis
-              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
-              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
-              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
-              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
-              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
-              nec risus nec felis accumsan rutrum sagittis vitae lectus.
-            </p>
-            <p class="mt-20">
-              Suspendisse dolor risus, congue ac diam id, viverra facilisis
-              dolor. Cras nec purus sagittis, varius tortor at, maximus erat.
-              Sed at tellus id tellus lobortis dictum. Mauris dignissim, turpis
-              vitae ullamcorper fermentum, sapien arcu aliquam arcu, in viverra
-              quam est ac ex. Cras sed lectus eu sem ullamcorper lobortis a sit
-              amet nulla. Proin a rutrum ipsum, sed maximus orci. Suspendisse
-              nec risus nec felis accumsan rutrum sagittis vitae lectus.
-            </p>
+           
+         
+     
           </div>
           <div class="blog-bottom">
             <div class="blog-tags">

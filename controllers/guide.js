@@ -222,7 +222,7 @@ exports.viewBlog = async (req, res, next) => {
 
 //edit profile
 exports.getEditProfile = (req, res, next) => {
-  res.render("guide/editprofile", {
+  res.render("guide/edit-profile", {
     guide: req.guide,
     profileImage: req.guide.guideImage,
   });
@@ -230,7 +230,7 @@ exports.getEditProfile = (req, res, next) => {
 
 exports.getProfile = (req, res, next) => {
   if (!req.guide.profileComplete) {
-    return res.redirect("/guide/edit-profile");
+    return res.redirect("/guide-edit-profile");
   }
   res.render("guide/profile", {
     guide: req.guide,
@@ -252,31 +252,23 @@ exports.postEditProfile = (req, res, next) => {
   const {
     contact,
     name,
-    organization,
 
-    education,
-    country,
     address,
-    city,
-    state,
   } = req.body;
   Guide.findOne({ _id: req.guide._id })
     .then((guide) => {
-      guide.guideName = name;
-      guide.guidePhone = contact;
-      guide.guideOrganization = organization;
-      guide.guideEducation = education;
-      guide.guideCountry = country;
+      guide.name = name;
+      guide.phone = contact;
+
       guide.guideAddress = address;
-      guide.guideCity = city;
-      guide.guideState = state;
+
       guide.guideImage = image;
       guide.profileComplete = true;
 
       return guide.save();
     })
     .then((result) => {
-      res.redirect("/guide/profile");
+      res.redirect("/guide-profile");
     })
     .catch((err) => console.log(err));
 };

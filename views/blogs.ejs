@@ -1,0 +1,85 @@
+<%- include("./includes/head.ejs") %> <%- include("./includes/navigation.ejs")%>
+<link href="/css/Navigation.css" rel="stylesheet" type="text/css" />
+<div class="breadcrumb-area pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="breadcrumb-wrap">
+          <h2>Welcome to <strong>TRIPPER</strong></h2>
+          <p class="lead fw-normal text-white mb-0">
+            Blogs from our <strong>Guides</strong>
+          </p>
+          <ul class="breadcrumb-links">
+            <li>
+              <a href="/">Home</a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-chevron-right"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                />
+              </svg>
+            </li>
+            <li>All Blog</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Package   -->
+<div class="package-sidebar-wrapper pt-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <% if(blogs.length>0){ %> <% for( var i=0; i<blogs.length; i++){ %>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="blog-card">
+              <div class="blog-img">
+                <img
+                  src="https://tourx-next.vercel.app/assets/images/package/p-1.png"
+                  alt=""
+                  class="img-fluid"
+                />
+                <% var  eventDate = new Date(blogs[0].createdAt); %>
+                <%let dates = JSON.stringify(eventDate) %>
+               <% dates = dates.slice(1,11) %>
+                <div class="blog-date"><%=dates %></div>
+              </div>
+              <div class="blog-details">
+                <div class="blog-info">
+                  <a class="blog-writer" href="/blog/<%=blogs[i]._id %>"
+                    ><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
+                   <%=dates %></a
+                  ><a class="blog-comment" href="/blog/<%=blogs[i]._id %>"
+                    ><i class="fa fa-commenting-o" aria-hidden="true"></i
+                    ><span>(<%=blogs[i].comments.length %>)</span>Comment</a
+                  >
+                </div>
+                <a class="blog-title" href="/blog/<%=blogs[i]._id %>"
+                  ><%=blogs[i].title %></a
+                >
+                <div class="blog-btn">
+                  <a class="btn-common-sm" href="/blog/<%=blogs[i]._id %>">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %> <% }else{ %>
+          <div class="col-lg-12">
+            <div class="alert alert-danger" role="alert">No Blogs Found</div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include("./includes/end.ejs") %>
+</div>
