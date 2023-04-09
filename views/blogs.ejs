@@ -44,6 +44,7 @@
             <div class="blog-card">
               <div class="blog-img">
                 <img
+                style="height: 200px"
                   src="https://tourx-next.vercel.app/assets/images/package/p-1.png"
                   alt=""
                   class="img-fluid"
@@ -51,23 +52,36 @@
                 <% var  eventDate = new Date(blogs[0].createdAt); %>
                 <%let dates = JSON.stringify(eventDate) %>
                <% dates = dates.slice(1,11) %>
-                <div class="blog-date"><%=dates %></div>
+                <div class="blog-date"  style=" background-color: #353767 !important">  <i
+                  class="fa fa-calendar"
+                  style="color: white"
+                  aria-hidden="true"
+                ></i><%=dates %></div>
               </div>
               <div class="blog-details">
                 <div class="blog-info">
                   <a class="blog-writer" href="/blog/<%=blogs[i]._id %>"
-                    ><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
+                    ><i  style="color: #353767 !important" class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
                    <%=dates %></a
                   ><a class="blog-comment" href="/blog/<%=blogs[i]._id %>"
-                    ><i class="fa fa-commenting-o" aria-hidden="true"></i
+                    ><i  style="color: #353767 !important" class="fa fa-commenting-o" aria-hidden="true"></i
                     ><span>(<%=blogs[i].comments.length %>)</span>Comment</a
                   >
                 </div>
                 <a class="blog-title" href="/blog/<%=blogs[i]._id %>"
                   ><%=blogs[i].title %></a
                 >
+                <div class="package-info mb-2">
+                  <%=blogs[i].content.substring(0, 100) %>
+                </div>
+              
                 <div class="blog-btn">
-                  <a class="btn-common-sm" href="/blog/<%=blogs[i]._id %>">Read More</a>
+                  <a
+                    style="background-color: #eaeef7; border: 1px solid #353767"
+                    class="btn-common-sm"
+                    href="/blog/<%=blogs[i]._id %>"
+                    >Read More</a
+                  >
                 </div>
               </div>
             </div>
