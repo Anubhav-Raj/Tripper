@@ -265,7 +265,7 @@ figure.snip1157 .author h5 span {
   }
   
   .company-info span .our {
-    color: #ffdc0e;
+    color: #353767;
   }
   
   .company-info p{
@@ -281,7 +281,7 @@ figure.snip1157 .author h5 span {
   .team span {
     font-size: 2.5rem;
     font-weight: bold;
-    border-bottom: 4px solid #ffdc0e;
+    border-bottom: 4px solid #353767;
   }
   
   .container3 {
@@ -318,7 +318,7 @@ figure.snip1157 .author h5 span {
   }
   
   .yellow-surname {
-    color: #ffdc0e;
+    color: #353767;
   }
   
   .card-description span {
@@ -348,7 +348,7 @@ figure.snip1157 .author h5 span {
   
   .card-info a {
     text-decoration: none;
-    color: navy;
+    color: #353767;
   }
   
   .card-info p {
@@ -437,7 +437,7 @@ figure.snip1157 .author h5 span {
     margin-bottom: 50px;
   }
   .content .top .logo-details {
-    color: #fdd166;
+    color: #353767;
     font-size: 30px;
   }
   .content .top .media-icons {
@@ -493,7 +493,7 @@ figure.snip1157 .author h5 span {
     bottom: -2px;
     height: 2px;
     width: 35px;
-    background: #fdd166;
+    background: #353767;
   }
   .content .link-boxes .box li {
     margin: 6px 0;
@@ -572,7 +572,7 @@ figure.snip1157 .author h5 span {
     margin-right: 10px;
   }
   
-  /* ------------------------------------------media-footer------------------------------------------- */
+
   @media (max-width: 900px) {
     .company-info {
       width: 100%;
