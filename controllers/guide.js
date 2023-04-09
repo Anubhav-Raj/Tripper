@@ -1,56 +1,47 @@
-const Guide = require("../model/guide");
-const Package = require("../model/package");
+const Guide = require("../models/guide");
+const Package = require("../models/package");
 const bcrypt = require("bcrypt");
-const Blog = require("../model/blog");
+const Blog = require("../models/blog");
 const fs = require("fs");
-const fileHelper = require("../util/file");
+const fileHelper = require("../utils/file");
 //guide register
 exports.getRegister = (req, res) => {
-  res.render("pages/register");
+  res.render("guide/signup");
 };
 exports.postRegister = async (req, res, next) => {
   const gname = req.body.gname;
   const gemail = req.body.gemail;
   const password = req.body.gpass;
+  const phone = req.body.phone;
+
   const confirmPassword = req.body.gpassc;
   if (await Guide.findOne({ guideEmail: gemail })) {
     return res.redirect("/guide/register", { error: "Email already exists" });
   }
-  if (password !== confirmPassword) {
-    return res.redirect("/guide/register", {
-      error: "Password does not match",
-    });
-  }
+
   const hashedPass = await bcrypt.hash(password, 12);
   const guide = new Guide({
     guidePassword: hashedPass,
     guideEmail: gemail,
-    guideName: gname,
+    name: gname,
+    phone: phone,
   });
-  guide.save((err, g) => {
-    if (err) {
-      console.log(err);
-      res.redirect("/guide/register", { error: "Something went wrong" });
-    }
-    res.redirect("/guide/login");
+  guide.save().then((result) => {
+    res.redirect("/guide-login");
   });
 };
 //login
 exports.getLogin = (req, res) => {
-  res.render("pages/login");
+  res.render("guide/guidelogin");
 };
 exports.postLogin = async (req, res, next) => {
-  const gemail = req.body.gemail;
-  const gpass = req.body.gpass;
-  // if (req.session.isTouristLoggedIn || req.session.isAdminLoggedIn) {
-  //   req.session.destroy((err) => {
-  //     // console.log(err);
-  //   });
-  // }
+  const gemail = req.body.email;
+  const gpass = req.body.pass;
+
   Guide.findOne({ guideEmail: gemail })
     .then((guide) => {
       if (!guide) {
-        return res.redirect("/guide/login");
+        return res.redirect("/guide-login");
       }
       bcrypt
         .compare(gpass, guide.guidePassword)
@@ -59,23 +50,23 @@ exports.postLogin = async (req, res, next) => {
             req.session.isLoggedIn = true;
             req.session.guide = guide;
             return req.session.save((err) => {
-              res.redirect("/guide/dashboard");
+              res.redirect("/guide-dashboard");
             });
           }
-          res.redirect("/guide/login");
+          res.redirect("/guide-login");
         })
         .catch((err) => {
           console.log(err);
-          res.redirect("/guide/login");
+          res.redirect("/guide-login");
         });
     })
     .catch((err) => console.log(err));
 };
 //destroying the session
-exports.postVlogout = (req, res) => {
+exports.postLogout = (req, res) => {
   req.session.destroy((err) => {
     // console.log(err);
-    res.redirect("/guide/login");
+    res.redirect("/guide-login");
   });
 };
 
@@ -92,7 +83,7 @@ exports.getGuideDashboard = async (req, res, next) => {
     }
   });
 
-  res.render("guide/dashboard", {
+  res.render("guide/gdashboard", {
     guide: req.guide,
     blogLabels: blogLabels,
     likes: likes,
@@ -103,24 +94,24 @@ exports.getGuideDashboard = async (req, res, next) => {
 
 exports.getAddPackage = (req, res, next) => {
   if (!req.guide.guideAccepted) {
-    return res.redirect("/guide/dashboard");
+    return res.redirect("/guide-dashboard");
   }
-  res.render("guide/addPackage", {
+  res.render("guide/package/add-package", {
     guide: req.guide,
     profileImage: req.guide.guideImage,
   });
 };
 
 exports.postAddPackage = (req, res, next) => {
-  const pimage = req.file;
-  if (!pimage) {
-    return res.redirect("/guide/addpackage");
-  }
+  // const pimage = req.file;
+  // if (!pimage) {
+  //   return res.redirect("/guide/addpackage");
+  // }
   const { pname, pprice, pdesc, pslot, pduration, proutes, pinitary } =
     req.body;
 
   const p1 = new Package({
-    packageTitle: pname,
+    title: pname,
     packagePrice: pprice,
     packageDescription: pdesc,
     packageSlot: pslot,
@@ -130,21 +121,23 @@ exports.postAddPackage = (req, res, next) => {
     packageItinerary: pinitary,
     packageGuide: req.guide._id,
   });
-  p1.save((err, p) => {
-    if (err) {
+
+  p1.save()
+    .then((p) => {
+      Guide.findById(req.guide._id).then((guide) => {
+        guide.packages.push(p);
+        guide.save();
+      });
+      return res.redirect("/guide-packagelist");
+    })
+    .catch((err) => {
       console.log(err);
-      return res.redirect("/guide/dashboard");
-    }
-    Guide.findById(req.guide._id).then((guide) => {
-      guide.packages.push(p);
-      guide.save();
+      return res.redirect("/guide-dashboard");
     });
-    return res.redirect("/guide/packagelist");
-  });
 };
 exports.getPackageList = (req, res, next) => {
   Package.find({ packageGuide: req.guide._id }).then((packages) => {
-    res.render("guide/packagelist", {
+    res.render("guide/package/package-list", {
       guide: req.guide,
       packageList: packages,
       profileImage: req.guide.guideImage,
@@ -175,7 +168,7 @@ exports.deletePackage = async (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-  res.redirect("/guide/packagelist");
+  res.redirect("/guide-packagelist");
 };
 
 exports.editePackage = (req, res, next) => {
@@ -187,7 +180,7 @@ exports.getAddBlog = (req, res, next) => {
   if (!req.guide.guideAccepted) {
     return res.redirect("/guide/dashboard");
   }
-  res.render("guide/addBlog", {
+  res.render("guide/add-blog", {
     guide: req.guide,
     profileImage: req.guide.guideImage,
   });
@@ -195,9 +188,9 @@ exports.getAddBlog = (req, res, next) => {
 exports.getBlogList = (req, res, next) => {
   const guide = req.guide;
   // return console.log(guide);
-  Blog.find({ blogAuthor: guide._id }).then((blogs) => {
+  Blog.find({ author: guide._id }).then((blogs) => {
     // return console.log(blogs);
-    res.render("guide/bloglist", {
+    res.render("guide/blog-list", {
       guide: guide,
       blogs: blogs,
       profileImage: req.guide.guideImage,
@@ -209,7 +202,7 @@ exports.viewBlog = async (req, res, next) => {
   const blogId = req.body.blogId;
 
   Blog.findById(blogId)
-    .populate("blogAuthor")
+    .populate("author")
     .exec()
     .then((blog) => {
       if (blog.status === "approved") {

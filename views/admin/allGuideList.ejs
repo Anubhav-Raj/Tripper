@@ -38,7 +38,7 @@
                   <tr>
                    
                     <td><%=i+1 %></td>
-                    <td><%=guides[i].guideName %></td>
+                    <td><%=guides[i].name %></td>
                     <td><%=guides[i].guideEmail %></td>
                      <td><%=guides[i].packages.length %></td>
                     <td><%=guides[i].blogs.length %></td>
@@ -55,7 +55,7 @@
                       <div style="display: flex;justify-content: space-evenly; ">
                        
                           <div class=" mr-3">
-                          <form action="/admin/guide/action" method="post"> 
+                          <form action="/admin-guide/action" method="post"> 
                             <input type="hidden" name="guideId" value="<%=guides[i]._id%>">
                             <input type="hidden" name="action" value="approved">
                             <button  style=" border: none;" type="submit" class="btn-sm btn-block bg-gradient-success  text-white "  > Approved</button>
@@ -63,7 +63,7 @@
                         </div>
                         
                             <div>
-                              <form action="/admin/guide/action" method="post"> 
+                              <form action="/admin-guide/action" method="post"> 
                                 <input type="hidden" name="guideId" value="<%=guides[i]._id%>">
                                 <input type="hidden" name="action" value="disapproved">
                                 <button  style=" border: none;" type="submit" class="btn-sm btn-block bg-gradient-danger  text-white" > Abort Guide</button>

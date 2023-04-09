@@ -2,10 +2,7 @@ require("./db/db");
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-
-const connectMongoDBSession = require("connect-mongodb-session")(session);
-
-const MongoDBStore = connectMongoDBSession(session);
+const MongoDBstore = require("connect-mongodb-session")(session);
 require("dotenv").config();
 const Guide = require("./models/guide.js");
 const Tourist = require("./models/tourist.js");
@@ -16,53 +13,49 @@ const PORT = 5005;
 
 const app = express();
 //guide session
-// const oSessionStore = new MongoDBstore({
-//   //calling constructor
-//   uri: dbUrl,
-//   collection: "usersessions",
-// });
+const oSessionStore = new MongoDBstore({
+  //calling constructor
+  uri: dbUrl,
+  collection: "trippersessions",
+});
+const guidRoutes = require("./routers/guide");
+const adminRoutes = require("./routers/admin");
+const blogRoutes = require("./routers/blog");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(
-  session({
-    secret: "mugiwara",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.use("/profile", express.static("upload/images"));
 
 //session setup for guide
-// app.use(
-//   session({
-//     secret: "Guide and Tourist is awsome",
-//     resave: false,
-//     saveUninitialized: false,
-//     store: oSessionStore,
-//   })
-// );
+app.use(
+  session({
+    secret: "Guide and Tourist is awsome",
+    resave: false,
+    saveUninitialized: false,
+    store: oSessionStore,
+  })
+);
 
-//guide store
-// app.use((req, res, next) => {
-//   if (!req.session.guide) {
-//     return next();
-//   }
-//   Guide.findById(req.session.guide._id)
-//     .then((guide) => {
-//       req.guide = guide;
-//       req.isGuideAuth = true;
-//       next();
-//     })
-//     .catch((err) => console.log(err));
-// });
-//local variable
-// app.use((req, res, next) => {
-//   res.locals.isAuthenticated = req.session.isLoggedIn;
-//   next();
-// });
+// guide store
+app.use((req, res, next) => {
+  if (!req.session.guide) {
+    return next();
+  }
+  Guide.findById(req.session.guide._id)
+    .then((guide) => {
+      req.guide = guide;
+      req.isGuideAuth = true;
+      next();
+    })
+    .catch((err) => console.log(err));
+});
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  next();
+});
 
 //tourist session
 // app.use((req, res, next) => {
@@ -169,6 +162,11 @@ app.post("/login", (req, res) => {
     }
   });
 });
+
+//related routes
+app.use(guidRoutes);
+app.use(adminRoutes);
+app.use(blogRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

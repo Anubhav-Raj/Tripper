@@ -1,37 +1,37 @@
-const Guide = require("../model/guide");
-const Tourist = require("../model/tourist");
-const Blog = require("../model/blog");
+const Guide = require("../models/guide");
+const Tourist = require("../models/tourist");
+const Blog = require("../models/blog");
 const fs = require("fs");
-const Comment = require("../model/comment");
-const fileHelper = require("../util/file");
-const Reply = require("../model/reply");
+const Comment = require("../models/comment");
+const fileHelper = require("../utils/file");
+const Reply = require("../models/replies");
 //post a blog
 exports.postBlog = (req, res, next) => {
   const bimage = req.file;
   if (!bimage) {
-    return res.redirect("/guide/addblog");
+    return res.redirect("/guide-addblog");
   }
   const { btitle, bdesc, btags } = req.body;
-  //   return console.log(btitle, bdesc, btags);
+
+  // return console.log(req.guide);
   const b1 = new Blog({
     blogTitle: btitle,
     blogTag: btags,
-    blogContent: bdesc,
+    content: bdesc,
     blogImage: req.file.filename,
-    blogAuthor: req.guide._id,
+    author: req.guide._id,
   });
 
-  b1.save((err, b) => {
-    if (err) {
-      console.log(err);
-      return res.redirect("/guide/dashboard");
-    }
-    Guide.findById(req.guide._id).then((guide) => {
+  b1.save()
+    .then(async (b) => {
+      const guide = await Guide.findById(req.guide._id);
+
       guide.blogs.push(b);
       guide.save();
+    })
+    .then(() => {
+      res.redirect("/guide-bloglist");
     });
-    return res.redirect("/guide/bloglist");
-  });
 };
 
 exports.deleteBlog = async (req, res, next) => {
@@ -42,7 +42,7 @@ exports.deleteBlog = async (req, res, next) => {
       if (!b) {
         throw "Not found";
       }
-      if (b.blogAuthor.equals(req.guide._id)) {
+      if (b.author.equals(req.guide._id)) {
         const g = await Guide.findByIdAndUpdate(req.guide._id, {
           $pull: { blogs: b._id },
         });
@@ -57,7 +57,7 @@ exports.deleteBlog = async (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-  res.redirect("/guide/bloglist");
+  res.redirect("/guide-bloglist");
 };
 
 //globlal
@@ -81,7 +81,7 @@ exports.getMainBlogList = async (req, res, next) => {
     status: "approved",
   })
     .sort({ blogViews: -1 })
-    .populate("blogAuthor")
+    .populate("author")
     .limit(4)
     .exec();
   // return console.log(trendingBlogs);
@@ -90,7 +90,7 @@ exports.getMainBlogList = async (req, res, next) => {
     $and: [{ status: "approved" }],
   })
     .sort({ createdAt: -1 })
-    .populate("blogAuthor")
+    .populate("author")
     // .limit(3)
     .exec()
     .then((blogs) => {
@@ -142,7 +142,7 @@ exports.getBlogById = async (req, res, next) => {
   //count views
   Blog.findByIdAndUpdate(bId, { $inc: { blogViews: 1 } }).exec();
   Blog.findOne({ _id: bId })
-    .populate("blogAuthor")
+    .populate("author")
     .populate("comments")
     .populate({
       path: "comments",
@@ -204,6 +204,7 @@ exports.getBlogById = async (req, res, next) => {
         isGuideAuth: req.isGuideAuth,
         isTouristAuth: req.isTouristAuth,
         user: user,
+        pageTitle: "Blogs",
       });
     });
 };
@@ -330,12 +331,12 @@ exports.getBlogByTag = async (req, res, next) => {
     status: "approved",
   })
     .sort({ blogViews: -1 })
-    .populate("blogAuthor")
+    .populate("author")
     .limit(4)
     .exec();
   Blog.find({ blogTag: tag, status: "approved" })
     .sort({ createdAt: -1 })
-    .populate("blogAuthor")
+    .populate("author")
     .exec()
     .then((blogs) => {
       if (!blogs) {
@@ -371,7 +372,7 @@ exports.getBlogBySearch = async (req, res, next) => {
   })
 
     .sort({ blogViews: -1 })
-    .populate("blogAuthor")
+    .populate("author")
     .limit(4)
     .exec();
   Blog.find({
@@ -382,7 +383,7 @@ exports.getBlogBySearch = async (req, res, next) => {
     status: "approved",
   })
     .sort({ createdAt: -1 })
-    .populate("blogAuthor")
+    .populate("author")
     .exec()
     .then((blogs) => {
       if (!blogs) {

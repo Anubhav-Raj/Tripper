@@ -37,8 +37,8 @@
                   <% for(var i=0; i<blogs.length; i++){ %>
                   <tr>
                     <td><%=i+1  %></td>
-                    <td><%=blogs[i].blogTitle %></td>
-                    <td><%=blogs[i].blogAuthor.guideName %></td>
+                    <td><%=blogs[i].title %></td>
+                    <td><%=blogs[i].author.name %></td>
                     <% var dates = blogs[i].createdAt %>
                     <td><%=dates %></td>
                     <td>
@@ -73,7 +73,7 @@
                     </td>
                     <td>
                       <div style="display: flex">
-                        <form action="/admin/blog/view" method="post">
+                        <form action="/admin-blog/view" method="post">
                           <input type="hidden" name="blogId" value="<%=blogs[i]._id%>" />
                           <button
                             style="border: none"
@@ -89,7 +89,7 @@
                       <div style="display: flex; justify-content: space-evenly">
                         <div class="mr-3">
                           <% if(blogs[i].status==="pending"){ %>
-                            <form action="/admin/blog/approve" method="post">
+                            <form action="/admin-blog/approve" method="post">
                               <input type="hidden" name="blogId" value="<%=blogs[i]._id%>" />
                           <button
                             style="border: none"
@@ -102,7 +102,7 @@
                         </form>
                         </div>
                         <div>
-                          <form action="/admin/blog/abort" method="post">
+                          <form action="/admin-blog/abort" method="post">
                             <input type="hidden" name="blogId" value="<%=blogs[i]._id%>" />
                           <button
                             style="border: none"

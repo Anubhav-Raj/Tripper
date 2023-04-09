@@ -36,8 +36,8 @@
                   <% for(var i=0;i<packages.length;i++){ %>
                   <tr>
                     <td><%=i+1%> </td>
-                    <td><%=packages[i].packageTitle %></td>
-                    <td><%=packages[i].packageGuide.guideName %></td>
+                    <td><%=packages[i].title %></td>
+                    <td><%=packages[i].packageGuide.name %></td>
                     <% var eventDate = new Date(packages[i].createdAt); %>
                      <%let dates =JSON.stringify(eventDate) %> <% dates = dates.slice(1,11) %> 
                     <td><%=dates%></td>
@@ -61,14 +61,14 @@
                         <div style="display: flex;justify-content: space-evenly; ">
                           <% if(packages[i].status==="pending"){ %>
                             <div class=" mr-3">
-                            <form action="/admin/package/action" method="post"> 
+                            <form action="/admin-package/action" method="post"> 
                               <input type="hidden" name="packageId" value="<%=packages[i]._id%>">
                               <input type="hidden" name="action" value="approved">
                               <button  style=" border: none;" type="submit" class="btn-sm btn-block bg-gradient-success  text-white "  > Approved</button>
                             </form>
                           </div>
                               <div>
-                                <form action="/admin/package/action" method="post"> 
+                                <form action="/admin-package/action" method="post"> 
                                   <input type="hidden" name="packageId" value="<%=packages[i]._id%>">
                                   <input type="hidden" name="action" value="disapproved">
                                   <button  style=" border: none;" type="submit" class="btn-sm btn-block bg-gradient-danger  text-white" > DisApproved</button>

@@ -1,14 +1,14 @@
 require("dotenv").config();
-const Blog = require("../model/blog");
-const Package = require("../model/package");
-const MainPage = require("../model/mainpage");
-const Guide = require("../model/guide");
-const Tourist = require("../model/tourist");
+const Blog = require("../models/blog");
+const Package = require("../models/package");
+
+const Guide = require("../models/guide");
+const Tourist = require("../models/tourist");
 const fs = require("fs");
-const fileHelper = require("../util/file");
+const fileHelper = require("../utils/file");
 
 exports.getDashboard = async (req, res, next) => {
-  const blogs = await Blog.find({ status: "approved" }).limit(6);
+  const blogs = await Blog.find({ status: "approved" }).limit(5);
   const blogLabels = blogs.map((b) => b.blogTitle);
   const blogLikes = blogs.map((b) => b.likes);
 
@@ -23,7 +23,7 @@ exports.getDashboard = async (req, res, next) => {
 };
 
 exports.getLogin = (req, res, next) => {
-  res.render("admin/login");
+  res.render("admin/adminlogin");
 };
 
 exports.postLogin = (req, res, next) => {
@@ -39,9 +39,9 @@ exports.postLogin = (req, res, next) => {
       adminname: process.env.ADMIN_ID,
       adminpass: process.env.ADMIN_PASS,
     };
-    res.redirect("/admin/dashboard");
+    res.redirect("/admin-dashboard");
   } else {
-    res.redirect("/admin/login");
+    res.redirect("/admin-login");
   }
 };
 exports.postLogout = (req, res, next) => {
@@ -49,59 +49,11 @@ exports.postLogout = (req, res, next) => {
     res.redirect("/");
   });
 };
-exports.getAddCarousel = (req, res, next) => {
-  res.render("admin/addheaderimage", {
-    admin: req.admin,
-    profileImage: false,
-  });
-};
-
-exports.postAddCarousel = (req, res, next) => {
-  const cimage = req.file;
-  if (!cimage) {
-    return res.redirect("/admin/addcarousel");
-  }
-  const m = new MainPage({
-    carouselImage: req.file.filename,
-  });
-  m.save().then((err, result) => {
-    if (err) {
-      return res.redirect("/admin/dashboard");
-    }
-
-    res.redirect("/");
-  });
-};
-
-exports.getCarousels = (req, res, next) => {
-  MainPage.find().then((carousels) => {
-    res.render("admin/carauselList", {
-      admin: req.admin,
-      carousels: carousels,
-      profileImage: false,
-    });
-  });
-};
-
-exports.deleteCarousel = (req, res, next) => {
-  const carouselId = req.body.id;
-  MainPage.findByIdAndRemove(carouselId)
-    .then((result) => {
-      const pathImg = "upload/images/" + result.carouselImage;
-      if (fs.existsSync(pathImg)) {
-        fileHelper.deleteFiles(pathImg);
-      }
-      res.redirect("/admin/carousels");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
 
 //blogs
 exports.getBlogs = (req, res, next) => {
   Blog.find()
-    .populate("blogAuthor")
+    .populate("author")
     .exec()
     .then((blogs) => {
       // return console.log(blogs);
@@ -134,7 +86,7 @@ exports.approveBlog = (req, res, next) => {
       return blog.save();
     })
     .then((result) => {
-      res.redirect("/admin/blogs");
+      res.redirect("/admin-blogs");
     })
     .catch((err) => {
       console.log(err);
@@ -149,7 +101,7 @@ exports.abortBlog = (req, res, next) => {
       return blog.save();
     })
     .then((result) => {
-      res.redirect("/admin/blogs");
+      res.redirect("/admin-blogs");
     })
     .catch((err) => {
       console.log(err);
@@ -166,7 +118,7 @@ exports.actionPackage = (req, res, next) => {
       return pack.save();
     })
     .then((result) => {
-      res.redirect("/admin/packages");
+      res.redirect("/admin-packages");
     })
     .catch((err) => {
       console.log(err);
@@ -177,7 +129,7 @@ exports.viewBlog = (req, res, next) => {
   const blogId = req.body.blogId;
   Blog.findById(blogId)
 
-    .populate("blogAuthor")
+    .populate("author")
     .exec()
     .then((blog) => {
       if (blog.status === "approved") {
@@ -230,7 +182,7 @@ exports.guideAction = (req, res, next) => {
       return guide.save();
     })
     .then((result) => {
-      res.redirect("/admin/guides");
+      res.redirect("/admin-guides");
     })
     .catch((err) => {
       console.log(err);
