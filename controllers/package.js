@@ -1,6 +1,6 @@
-const Package = require("../model/package");
-const Booked = require("../model/booked");
-const Tourist = require("../model/tourist");
+const Package = require("../models/package");
+const Booked = require("../models/booked");
+const Tourist = require("../models/tourist");
 
 exports.getAllPackages = (req, res, next) => {
   let logintype = "none";
@@ -15,10 +15,11 @@ exports.getAllPackages = (req, res, next) => {
     .populate("packageGuide")
     .exec()
     .then((packages) => {
-      res.render("package/packages", {
+      res.render("allpackage", {
         packages: packages,
         profileImage: false,
         logintype: logintype,
+        pageTitle: "Travel World | All Packages",
       });
     });
 };
@@ -43,10 +44,11 @@ exports.getPackage = (req, res, next) => {
     .populate("packageGuide")
     .exec()
     .then((pack) => {
-      res.render("package/singlepackage", {
+      res.render("package_details", {
         pack: pack,
         profileImage: false,
         logintype: logintype,
+        pageTitle: "Travel World | Package Details",
       });
     });
 };

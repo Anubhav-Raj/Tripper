@@ -22,6 +22,7 @@ const guidRoutes = require("./routers/guide");
 const adminRoutes = require("./routers/admin");
 const blogRoutes = require("./routers/blog");
 const touristRoutes = require("./routers/tourist");
+const packageRoutes = require("./routers/package");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -163,7 +164,7 @@ app.use(guidRoutes);
 app.use(adminRoutes);
 app.use(blogRoutes);
 app.use(touristRoutes);
-
+app.use(packageRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

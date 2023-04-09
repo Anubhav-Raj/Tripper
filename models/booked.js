@@ -29,7 +29,7 @@ const bookedSchema = new Schema(
       type: String,
     },
     totalAmount: {
-      type: Number,
+      type: String,
     },
   },
   { timestamps: true }

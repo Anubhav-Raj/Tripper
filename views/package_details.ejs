@@ -16,18 +16,22 @@
           <div class="package-details">
             <div class="package-thumb">
               <img
-                src="https://tourx-next.vercel.app/assets/images/package/p-1.png"
+                src="/profile/<%=pack.packageImage %>"
                 alt=""
                 style="height: 500px !important"
               />
             </div>
             <div class="package-header">
               <div class="package-title">
-                <h3>Western Express Northbound</h3>
+                <h3><%=pack.name %></h3>
+                <% var locations = "" %> <%
+                pack.packageRoutes.forEach(function(location){ %> <% locations
+                += location + ", " %> <% }) %>
+
                 <strong
                   ><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;
-                  Mount Dtna, Spain</strong
-                >
+                  <%=locations %>
+                </strong>
               </div>
               <div class="pd-review">
                 <p>Excellent</p>
@@ -56,14 +60,14 @@
                 <i class="fa-solid fa-clock"></i>
                 <div class="info-texts">
                   <strong>Duration</strong>
-                  <p>Daily Tour</p>
+                  <p><% pack.packageDuration%></p>
                 </div>
               </div>
 
               <div class="single-info">
                 <div class="info-texts">
                   <strong>Group Slots</strong>
-                  <p>30 People</p>
+                  <p><%=pack.packageSlot-pack.packageSlotUsed %> People</p>
                 </div>
               </div>
             </div>
@@ -80,22 +84,7 @@
                       <div class="tab-content-1">
                         <div class="p-overview">
                           <h5>Overview</h5>
-                          <p>
-                            Pellentesque accumsan magna in augue sagittis, non
-                            fringilla eros molestie. Sed feugiat mi nec ex
-                            vehicula, nec vestibulum orci semper. Class aptent
-                            taciti sociosqu ad litora torquent per conubia
-                            nostra, per inceptos himenaeos. Donec tristique
-                            commodo fringilla. Duis aliquet varius mauris eget
-                            rutrum. Nullam sit amet justo consequat, bibendum
-                            orci in, convallis enim. Proin convallis neque
-                            viverra finibus cursus. Mauris lacinia lacinia erat
-                            in finibus. In non enim libero.Pellentesque accumsan
-                            magna in augue sagittis, non fringilla eros
-                            molestie. Sed feugiat mi nec ex vehicula, nec
-                            vestibulum orci semper. Class aptent taciti sociosqu
-                            ad litora torquent per conubia nostra.
-                          </p>
+                          <p><%=pack.packageDescription %></p>
                         </div>
                         <div class="p-highlight">
                           <h5>Highlight</h5>

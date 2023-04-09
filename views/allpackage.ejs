@@ -22,23 +22,24 @@
       <div class="col-lg-8">
 
         <div class="row">
-          <% for( var i=0; i<3; i++){ %>
+          <% if(packages.length>0) {%>
+          <% for( var i=0; i<packages.length; i++){ %>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="package-card" style="color:#353767 !important; border-radius: 20px; background-color: #EAEEF7;">
               <div class="package-thumb">
-                <img  style="height: 200px;" src="/img/productHeading.png" alt=""class="img-fluid"/>
+                <img  style="height: 200px;" src="/profile/<%=packages[i].packageImage %>" alt=""class="img-fluid"/>
               </div>
               <div class="package-details">
                 <div class="package-info">
-                  <h5 style="color:#353767 !important"><span>$180</span>/Per Person</h5>
+                  <h5 style="color:#353767 !important"><span>$<%=packages[i].packagePrice %></span>/Per Person</h5>
                   <h5 style="color:#353767 !important"><i class="fa fa-calendar" aria-hidden="true"></i></i>5 Days/6 night</h5>
                 </div>
                 <h3 style="color:#353767 !important">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
-                  <a  style="color:#353767 !important" href="/package-details">&nbsp;Paris Hill Tour</a>
+                  <a  style="color:#353767 !important" href="/package/<%=packages[i]._id %>">&nbsp;<%=packages[i].packageRoutes[0] %></a>
                 </h3>
                 <div class="package-info mb-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ut repellendus fuga doloremque, suscipit labore non. Ea architecto itaque assumenda doloremque accusamus quas.
+                 <%=packages[i].packageDescription %>
                </div>
                 <!-- <div class="package-rating">
                   <strong
@@ -46,12 +47,21 @@
                   >
                 </div> -->
                 <div class="blog-btn">
-                  <a  style="background-color: #EAEEF7; border: 1px solid #353767;" class="btn-common-sm" href="/package_details">Read More</a>
+                  <a  style="background-color: #EAEEF7; border: 1px solid #353767;" class="btn-common-sm" href="/package/<%=packages[i]._id %>">Read More</a>
+                </div>
+                <div class="blog-btn">
+                  <form action="/booking" method="post">
+                    <input type="hidden" name="packageId" value="<%=packages[i]._id %>"/>
+                  <button  style="background-color: #EAEEF7; border: 1px solid #353767;" class="btn-common-sm" type="submit"">Book</button>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
 
+          <% } %>
+          <% }else{ %>
+            <p>No package found</p>
           <% } %>
         </div>
       </div>
