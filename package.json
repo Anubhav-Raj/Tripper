@@ -34,6 +34,7 @@
     "nodemon": "^2.0.22",
     "passport": "^0.6.0",
     "passport-github2": "^0.1.12",
+    "swiper": "^9.2.0",
     "twilio": "^4.10.0"
   }
 }
