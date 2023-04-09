@@ -2278,6 +2278,13 @@ i {
   display: flex;
   align-items: center;
 }
+.book {
+  background-color: #eaeef7;
+  outline: none;
+  margin-top: 10px;
+  padding: 10px 39px;
+  border-radius: 5px;
+}
 /* 
 .offer-area .offer-slider.owl-carousel .owl-nav button {
   position: absolute;
