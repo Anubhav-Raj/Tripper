@@ -1,4 +1,6 @@
-<img 
+
+![alt text](https://raw.githubusercontent.com/GAURAV1-ui/Tripper/master/public/img/logo.png)
+
 <h1 align="center">TRIPPER</h1>
 <p align="center">Meet the locals, like a local.</p>
 <hr />
