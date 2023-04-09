@@ -6,29 +6,34 @@
     </div>
     <div class="login-box">
       <h2 class="heading-login-box">Tourist Sign-Up Panel</h2>
-      <form>
+      <form action="tourist-signup" method="post">
         <div class="user-box">
-          <input class="user-box-input" type="text" required />
+          <input class="user-box-input" name="tname" type="text" required />
           <label class="user-box-label">Name</label>
         </div>
         <div class="user-box">
-          <input class="user-box-input" type="email" required />
+          <input class="user-box-input" name="temail" type="email" required />
           <label class="user-box-label">E mail</label>
         </div>
         <div class="user-box">
-          <input class="user-box-input" type="phone" required />
+          <input class="user-box-input" name="phone" type="phone" required />
           <label class="user-box-label">Phone no</label>
         </div>
         <div class="user-box">
-          <input class="user-box-input" type="password" required />
+          <input
+            class="user-box-input"
+            name="tpassc"
+            type="password"
+            required
+          />
           <label class="user-box-label">Password</label>
         </div>
         <div class="signin">
-          New to Tripper?
-          <a href="/signup" class="">Sign Up</a>
+          Already at Tripper?
+          <a href="/tourist-login" class="">Sign Up</a>
         </div>
 
-        <a type="submit" class="login-box-button" href="#"> Submit </a>
+        <button type="submit" class="login-box-button">Submit</button>
       </form>
     </div>
   </div>

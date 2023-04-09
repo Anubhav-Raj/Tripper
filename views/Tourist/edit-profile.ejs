@@ -1,0 +1,74 @@
+<!-- /header -->
+<%- include("../conn/header.ejs") %> <%- include("../conn/top.ejs") %>
+<!-- Main Sidebar Container -->
+<%- include("./navebar.ejs") %>
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container">
+      <h1 style="text-align: center" class="mb-3 pb-3">
+        Please Fill The Basic Details First!
+      </h1>
+      <div class="row mb-3">
+        <div class="col-md-8">
+          <form
+            action="/tourist-edit-profile"
+            enctype="multipart/form-data"
+            method="post"
+          >
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="validationDefault01">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="validationDefault01"
+                  placeholder="Name"
+                  name="name"
+                  value="<%=tourist.name %>"
+                  required
+                />
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="validationDefault01">Contect No.</label>
+                <input
+                  type="phone"
+                  class="form-control"
+                  id="validationDefault01"
+                  placeholder="phone"
+                  name="phone"
+                  value="<%=tourist.phone %>"
+                  required
+                />
+              </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="validationDefault03">Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationDefault03"
+                    placeholder="Address"
+                    value="<%=tourist.touristAddress %>"
+                    name="address"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label for="validationDefault01">Profile picture</label>
+                <input type="file" class="form-control" name="timage" />
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- /Footer -->
+<%- include("../conn/copyright.ejs") %> <%- include("../conn/footer.ejs") %>

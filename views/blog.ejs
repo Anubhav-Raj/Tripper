@@ -9,62 +9,88 @@
           <p class="lead fw-normal text-white mb-0">
             Blogs from our <strong>Guides</strong>
           </p>
-          <ul class="breadcrumb-links">
-            <li>
-              <a href="/">Home</a>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-chevron-right"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
-            </li>
-            <li>All Blog</li>
-          </ul>
         </div>
       </div>
     </div>
   </div>
 </div>
 <!-- Package   -->
-<div class="package-sidebar-wrapper pt-120">
+<div
+  class="package-sidebar-wrapper pt-120"
+  style="background: #eaeef7; overflow: hidden"
+>
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="row">
-          <% for( var i=0; i<5; i++){ %>
+          <% for( var i=0; i<6; i++){ %>
           <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="blog-card">
+            <div
+              class="blog-card"
+              style="
+                color: #353767 !important;
+                border-radius: 20px;
+                background-color: #eaeef7;
+              "
+            >
               <div class="blog-img">
                 <img
-                  src="https://tourx-next.vercel.app/assets/images/package/p-1.png"
+                  style="height: 200px"
+                  src="/img/productHeading.png"
                   alt=""
                   class="img-fluid"
                 />
-                <div class="blog-date">1 April, 2021</div>
+                <div
+                  style="background: #353767 !important; color: white"
+                  class="blog-date"
+                >
+                  <i
+                    class="fa fa-calendar"
+                    style="color: white"
+                    aria-hidden="true"
+                  ></i
+                  >&nbsp; 1 April, 2021
+                </div>
               </div>
               <div class="blog-details">
-                <div class="blog-info">
-                  <a class="blog-writer" href="/blog#"
-                    ><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;1
-                    April, 2021</a
+                <div class="blog-info" style="color: #353767 !important">
+                  <a
+                    class="blog-writer"
+                    href="/blog#"
+                    style="color: #353767 !important"
+                    ><i
+                      class="fa fa-calendar"
+                      aria-hidden="true"
+                      style="color: #353767 !important"
+                    ></i
+                    >&nbsp;1 April, 2021</a
                   ><a class="blog-comment" href="/blog#"
-                    ><i class="fa fa-commenting-o" aria-hidden="true"></i
+                    ><i
+                      class="fa fa-commenting-o"
+                      aria-hidden="true"
+                      style="color: #353767 !important"
+                    ></i
                     ><span>(5)</span>Comment</a
                   >
                 </div>
-                <a class="blog-title" href="/blog-details"
+                <a
+                  style="color: #353767 !important"
+                  class="blog-title"
+                  href="/blog-details"
                   >Donec Egestas Orci Viverra Fermentum Risus.</a
                 >
+                <div class="package-info mb-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
+                  ut repellendus fuga doloremque, suscipit labore non. Ea
+                  architecto itaque assumenda doloremque accusamus quas.
+                </div>
                 <div class="blog-btn">
-                  <a class="btn-common-sm" href="/blogdetails">Read More</a>
+                  <a
+                    style="background-color: #eaeef7; border: 1px solid #353767"
+                    class="btn-common-sm"
+                    href="/blogdetails"
+                    >Read More</a
+                  >
                 </div>
               </div>
             </div>
