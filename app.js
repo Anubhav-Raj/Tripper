@@ -21,6 +21,7 @@ const oSessionStore = new MongoDBstore({
 const guidRoutes = require("./routers/guide");
 const adminRoutes = require("./routers/admin");
 const blogRoutes = require("./routers/blog");
+const touristRoutes = require("./routers/tourist");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -58,23 +59,23 @@ app.use((req, res, next) => {
 });
 
 //tourist session
-// app.use((req, res, next) => {
-//   if (!req.session.tourist) {
-//     return next();
-//   }
-//   Tourist.findById(req.session.tourist._id)
-//     .then((tourist) => {
-//       req.tourist = tourist;
-//       req.isTouristAuth = true;
-//       next();
-//     })
-//     .catch((err) => console.log(err));
-// });
-//local variable for tourist
-// app.use((req, res, next) => {
-//   res.locals.isTouristAuthenticated = req.session.isTouristLoggedIn;
-//   next();
-// });
+app.use((req, res, next) => {
+  if (!req.session.tourist) {
+    return next();
+  }
+  Tourist.findById(req.session.tourist._id)
+    .then((tourist) => {
+      req.tourist = tourist;
+      req.isTouristAuth = true;
+      next();
+    })
+    .catch((err) => console.log(err));
+});
+// local variable for tourist
+app.use((req, res, next) => {
+  res.locals.isTouristAuthenticated = req.session.isTouristLoggedIn;
+  next();
+});
 
 //admin login
 app.use((req, res, next) => {
@@ -167,6 +168,7 @@ app.post("/login", (req, res) => {
 app.use(guidRoutes);
 app.use(adminRoutes);
 app.use(blogRoutes);
+app.use(touristRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

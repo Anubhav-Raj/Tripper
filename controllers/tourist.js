@@ -1,15 +1,15 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const Tourist = require("../model/tourist");
+const Tourist = require("../models/tourist");
 const fs = require("fs");
-const fileHelper = require("../util/file");
-const Booked = require("../model/booked");
-const { populate } = require("../model/tourist");
+const fileHelper = require("../utils/file");
+const Booked = require("../models/booked");
+const { populate } = require("../models/tourist");
 
 exports.getLogin = (req, res, next) => {
   const prevPage = req.get("referer");
 
-  res.render("tourist/login", {
+  res.render("tourist/touristlogin", {
     pageTitle: "Travel World | Toursit Login",
     path: "/login",
     prevPage: prevPage,
@@ -20,11 +20,11 @@ exports.postLogin = async (req, res, next) => {
   const temail = req.body.temail;
   const tpass = req.body.tpass;
   const prevPage = req.body.prevPage;
-  const prevPageUrl = prevPage.split("/");
+
   Tourist.findOne({ touristEmail: temail })
     .then((tourist) => {
       if (!tourist) {
-        return res.redirect("/tourist/login");
+        return res.redirect("/tourist-login");
       }
       bcrypt
         .compare(tpass, tourist.touristPassword)
@@ -33,58 +33,56 @@ exports.postLogin = async (req, res, next) => {
             req.session.isTouristLoggedIn = true;
             req.session.tourist = tourist;
             return req.session.save((err) => {
-              if (
-                prevPage == "http://" + prevPageUrl[2] + "/login_as" ||
-                prevPage == ""
-              ) {
-                res.redirect("/tourist/dashboard");
-              } else {
-                res.redirect(prevPage);
-              }
+              res.redirect("/tourist-dashboard");
             });
           }
-          res.redirect("/tourist/login");
+          res.redirect("/tourist-login");
         })
         .catch((err) => {
           console.log(err);
-          res.redirect("/tourist/login");
+          res.redirect("/tourist-login");
         });
     })
     .catch((err) => console.log(err));
 };
 
 exports.getSignup = (req, res, next) => {
-  res.render("tourist/register", {
+  res.render("tourist/touristsignup", {
     pageTitle: "Travel World | Toursit Signup",
     path: "/signup",
   });
 };
 
 exports.postSignup = async (req, res, next) => {
-  const { tname, temail, tpass, tpassc } = req.body;
-
-  if (tpass !== tpassc) {
-    return res.redirect("/tourist/signup");
-  }
+  const { tname, temail, tpass, phone, tpassc } = req.body;
 
   if (await Tourist.findOne({ touristEmail: temail })) {
-    return res.redirect("/tourist/signup");
+    return res.redirect("/tourist-signup");
   }
 
-  const hashedPass = await bcrypt.hash(tpass, 12);
+  const hashedPass = await bcrypt.hash(tpassc, 12);
   const tourist = new Tourist({
     touristPassword: hashedPass,
     touristEmail: temail,
-    touristName: tname,
+    name: tname,
+    phone: phone,
   });
 
-  tourist.save((err, t) => {
-    if (err) {
+  // tourist.save((err, t) => {
+  //   if (err) {
+  //     console.log(err);
+  //     res.redirect("/tourist-signup");
+  //   }
+  //   res.redirect("/tourist-login");
+  // });
+  tourist
+    .save()
+    .then((result) => {
+      res.redirect("/tourist-login");
+    })
+    .catch((err) => {
       console.log(err);
-      res.redirect("/tourist/signup");
-    }
-    res.redirect("/tourist/login");
-  });
+    });
 };
 
 exports.postLogout = (req, res, next) => {
@@ -94,17 +92,17 @@ exports.postLogout = (req, res, next) => {
 };
 
 exports.getDashboard = (req, res, next) => {
-  res.render("tourist/dashboard", {
+  // return console.log(re)
+  res.render("tourist/tdashboard", {
     pageTitle: "Travel World | Toursit Dashboard",
     path: "/dashboard",
     tourist: req.tourist,
-    profileImage: req.tourist.touristImage,
   });
 };
 
 exports.getProfile = (req, res, next) => {
   if (!req.tourist.profileComplete) {
-    return res.redirect("/tourist/edit-profile");
+    return res.redirect("/tourist-edit-profile");
   }
   res.render("tourist/profile", {
     pageTitle: "Travel World | Toursit Profile",
@@ -115,7 +113,7 @@ exports.getProfile = (req, res, next) => {
 };
 
 exports.getEditProfile = (req, res, next) => {
-  res.render("tourist/editprofile", {
+  res.render("tourist/edit-profile", {
     pageTitle: "Travel World | Toursit Edit Profile",
     path: "/tourist/edit-profile",
     tourist: req.tourist,
@@ -135,33 +133,27 @@ exports.postEditProfile = (req, res, next) => {
   }
   //   return console.log(profileImage, image);
   const {
-    organization,
-    education,
     phone,
-    country,
+
     address,
     name,
-    city,
-    state,
   } = req.body;
   //   return console.log(req.body);
 
   Tourist.findOne({ _id: req.tourist._id })
     .then((tourist) => {
-      tourist.touristName = name;
+      tourist.name = name;
       tourist.touristImage = image;
-      tourist.touristOrganization = organization;
-      tourist.touristEducation = education;
-      tourist.touristPhone = phone;
-      tourist.touristCountry = country;
+
+      tourist.phone = phone;
+
       tourist.touristAddress = address;
-      tourist.touristCity = city;
-      tourist.touristState = state;
+
       tourist.profileComplete = true;
       return tourist.save();
     })
     .then((result) => {
-      res.redirect("/tourist/profile");
+      res.redirect("/tourist-profile");
     })
     .catch((err) => console.log(err));
 };
@@ -180,7 +172,7 @@ exports.getBookedPackage = (req, res, next) => {
 
     .then((tourist) => {
       // console.log(tourist.booked[0].packageId);
-      res.render("tourist/bookedPackage", {
+      res.render("tourist/booked-package", {
         pageTitle: "Travel World | Toursit Booked Package",
 
         tourist: tourist,

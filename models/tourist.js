@@ -6,11 +6,15 @@ const touristSchema = new Schema(
     name: {
       type: String,
     },
-    email: {
+    touristEmail: {
       type: String,
     },
     touristPassword: {
       type: String,
+    },
+    phone: {
+      type: String,
+      default: "",
     },
     touristPhone: {
       type: String,
@@ -18,6 +22,7 @@ const touristSchema = new Schema(
     },
     touristImage: {
       type: String,
+      default: "",
     },
     profileComplete: {
       type: Boolean,
