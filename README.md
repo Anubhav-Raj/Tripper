@@ -25,3 +25,9 @@ Our blog is a great resource for travel inspiration and insider tips. You'll fin
 ## Contact Us
 If you have any questions or need help planning your trip, please don't hesitate to contact us. We're always happy to help!
 
+##Hhow to install
+```
+npm i
+npm start
+```
+
