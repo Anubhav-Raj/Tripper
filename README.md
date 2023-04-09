@@ -1,8 +1,9 @@
-
-![alt text](https://raw.githubusercontent.com/GAURAV1-ui/Tripper/master/public/img/logo.png)
-
+<div align='center'><img src='https://raw.githubusercontent.com/GAURAV1-ui/Tripper/master/public/img/logo.png' />
 <p>Meet the locals, like a local.</p>
-<hr />
+<hr  width='50%'/>
+</div>
+
+
 
 Welcome to our Tourist Guide Website! This is a comprehensive guide to popular tourist destinations around the world. Our goal is to provide travelers with all the information they need to plan their trips and have a memorable experience.
 
