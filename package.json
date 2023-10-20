@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon server_tourist.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "bootstrap": "^5.3.0-alpha3",
     "bootstrap-icons": "^1.10.4",
     "boxicons": "^2.1.4",
+    "colors": "^1.4.0",
     "connect-mongodb-session": "^3.1.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",

@@ -1,4 +1,5 @@
-require("./db/db");
+const db =require("./db/db");
+db.connectDB();
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
@@ -7,9 +8,9 @@ require("dotenv").config();
 const Guide = require("./models/guide.js");
 const Tourist = require("./models/tourist.js");
 
-const dbUrl = "mongodb://0.0.0.0:27017/tripper";
+const dbUrl = process.env.MongoUri;
 
-const PORT = 5005;
+const PORT = 4023;
 
 const app = express();
 //guide session
